@@ -19,12 +19,12 @@ import com.mavict.base.BaseDaoImpl;
 public class ArticleDaoImpl extends BaseDaoImpl<Article, Long> implements ArticleDao {
 
 	@Override
-	public List<Article> getAbbreviation(Integer categoryId,Integer limitNumber) {
+	public List<Article> getNumList(Integer categoryId,Integer Num) {
 		String hql = "from Article where articleCategoryId=:categoryId order by id desc";
 		Query query = getSession().createQuery(hql);
 		query.setParameter("categoryId", categoryId);
 		query.setFirstResult(0);  
-        query.setMaxResults(limitNumber);  
+        query.setMaxResults(Num);  
 		return query.list();
 	}
 

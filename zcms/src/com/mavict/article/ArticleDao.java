@@ -14,7 +14,30 @@ import com.mavict.base.BaseDao;
  */
 
 public interface ArticleDao extends BaseDao<Article, Long> {
-	List<Article> getAbbreviation(Integer categoryId,Integer limitNumber);
+	/**
+	 * 获取前Num条文章
+	 * 
+	 * @param categoryId 文章目录Id
+	 * @param Num 前Num条
+	 * 
+	 * @return 文章实体List
+	 * */
+	List<Article> getNumList(Integer categoryId,Integer Num);
+	
+	/**
+	 * 获取指定目录下的文章分页操作
+	 * 
+	 * @param categoryId 文章目录Id
+	 * @param pageInfo 分页信息
+	 * 
+	 * @return 
+	 * */
 	PagedContent<Article> getPagedContentByCategoryId(Integer categoryId,PageInfo pageInfo);
+	
+	/**
+	 * 获取指定目录下文章的数目
+	 * 
+	 * @param categoryId 文章目录Id
+	 * */
 	Long count(Integer categoryId);
 }

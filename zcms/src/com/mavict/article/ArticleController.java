@@ -96,22 +96,19 @@ public class ArticleController {
 	
 	/** 保存文章 */
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public String save(HttpSession session,RedirectAttributes redirectAttributes,Article article,String articleCategoryIdAndType,String isTop) throws IOException, SolrServerException{
-		String[] ids = articleCategoryIdAndType.split("and");
-		Long articleCategoryId = Long.valueOf(ids[0]);
+	public String save(HttpSession session,RedirectAttributes redirectAttributes,Article article,Long articleCategoryId,String isTop){
 		
 		ArticleCategory articleCategory = new ArticleCategory();
 		articleCategory.setId(articleCategoryId);
 		
 		article.setArticleCategory(articleCategory);
 		
-		Date date = new Date();
-		
 		/* 设置置顶，给发布时间加1000年 */
+		Date date = new Date();
 		if ("true".equals(isTop)) { date = TimeUtils.add1000(date); }
 		article.setCreateDate(date);
 		
-		articleService.saveService(article);
+		articleService.saveService(article); 	// 保存实体
 	
 		/* 存在保存上传图片的session - 图片操作*/
 		if (null != session.getAttribute("webuploader_article")) {
@@ -125,8 +122,13 @@ public class ArticleController {
 			session.setAttribute("webuploader_article", null);
 		}
 		
-		//solrServer.addBean(article);
-		//solrServer.commit();
+		/* 提交到solr索引库*/
+		try {
+			solrServer.addBean(article);
+			solrServer.commit();
+		} catch (IOException | SolrServerException e) {
+			e.printStackTrace();
+		}
 		
 		redirectAttributes.addFlashAttribute("info", "添加文章成功！");
 		return "redirect:/admin/article/add";
@@ -151,7 +153,8 @@ public class ArticleController {
 		
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date date = dateFormat.parse(newDate);
-		/** 置顶 则时间增加1000年*/
+		
+		/* 置顶 则时间增加1000年*/
 		if ("true".equals(isTop)) {
 			date = TimeUtils.add1000(date);
 		}
@@ -160,12 +163,13 @@ public class ArticleController {
 		
 		articleService.updateService(article);
 		
-//		try {
-//			solrServer.addBean(article);
-//			solrServer.commit();
-//		} catch (IOException | SolrServerException e) {
-//			e.printStackTrace();
-//		}
+		/* 提交到solr索引库 */
+		try {
+			solrServer.addBean(article);
+			solrServer.commit();
+		} catch (IOException | SolrServerException e) {
+			e.printStackTrace();
+		}
 		
 		redirectAttributes.addFlashAttribute("info", "更新文章成功！");	
 		return "redirect:/admin/article/edit/"+id;

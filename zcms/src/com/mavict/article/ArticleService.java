@@ -14,10 +14,26 @@ import com.mavict.base.BaseService;
  */
 
 public interface ArticleService extends BaseService<Article, Integer> {
-	/** 移动临时文件夹内的文件到相应的文章id目录下 */
-	void moveToArticleIdDir(String tempDir,String idDir);
+
+	/**
+	 * 获取前Num条文章
+	 * 
+	 * @param categoryId 文章目录Id
+	 * @param Num 前Num条
+	 * 
+	 * @return 文章实体List
+	 * */
+	List<Article> getNumListService(Integer categoryId,Integer Num);
 	
-	List<Article> getAbbreviationService(Integer categoryId,Integer limitNumber);
-	
+	/**
+	 * 获取指定目录下的文章分页操作
+	 * 
+	 * @param categoryId 文章目录Id
+	 * @param pageInfo 分页信息
+	 * 
+	 * @return 
+	 * */
 	PagedContent<Article> getPagedContentByCategoryIdService(Integer categoryId,PageInfo pageInfo);
+	
+	
 }

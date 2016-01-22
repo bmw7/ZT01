@@ -83,7 +83,7 @@
                                         <!-- end section -->
 
                                         <div class="section">
-                                            <label for="username" class="field-label text-muted fs18 mb10">密 码</label>
+                                            <label for="password" class="field-label text-muted fs18 mb10">密 码</label>
                                             <label for="password" class="field prepend-icon">
                                                 <input type="password" name="pwd" id="pwd" class="gui-input" placeholder="请输入密码">
                                                 <label for="pwd" class="field-icon"><i class="fa fa-lock"></i>
@@ -134,7 +134,8 @@
     <!-- jQuery -->
     <script type="text/javascript" src="${base}/resource/admin/vendor/jquery/jquery-1.11.1.min.js"></script>
     <script type="text/javascript" src="${base}/resource/admin/vendor/jquery/jquery_ui/jquery-ui.min.js"></script>
-
+    <script type="text/javascript" src="${base}/resource/admin/js/jquery.cookie.js"></script>
+    
     <!-- Bootstrap -->
     <script type="text/javascript" src="${base}/resource/admin/assets/js/bootstrap/bootstrap.min.js"></script>
  
@@ -175,7 +176,33 @@
             
             
             
-             // RSA加密
+            /* -----------------------------  用户密码保存cookie操作  ---------------------------- */ 
+	    	
+	    	var usernameCookieValue = $.cookie('username');
+			var passwordCookieValue = $.cookie('password');
+	    	
+			
+			// cookie中有登陆表单值，则填入登陆表单
+			if((usernameCookieValue != '' && usernameCookieValue != null) && (passwordCookieValue != '' && passwordCookieValue != null)){
+				$('#username').val(usernameCookieValue);
+				$('#pwd').val(passwordCookieValue); 
+			}
+	    	
+	    	// 点击 是否记住 登陆表单值 checkbox 操作
+	    	$('#remember').click(function(){
+	    		 if($(this).prop("checked")!=true){
+	    		 	// 未选中,则在cookie值不为空的情况下,删除cookie
+	    		 	if((usernameCookieValue != '' && usernameCookieValue != null) && (passwordCookieValue != '' && passwordCookieValue != null)){
+				    	$.cookie('username', '', { expires: -1, path: '/' });
+						$.cookie('password', '', { expires: -1, path: '/' });
+				    }
+	    		 }
+	    	});
+	    	
+	    	
+            
+            /* -----------------------------  登陆表单RSA加密操作  ---------------------------- */ 
+            
 	    	$('#myform').submit(function(){
 	    	
 	    	    var $password = $('#pwd');
@@ -190,6 +217,18 @@
 			
 				// 将加密之后的数据赋值给表单属性，以传给服务器解密
 				$encryptPassword.val(encryptPassword);
+				
+				// 额外操作：cookie保存账号和密码
+				var usernameInputValue = $('#username').val();
+	    	    var passwordInputValue = $('#pwd').val();
+				
+		    	if($('#remember').prop("checked")==true){
+					if(usernameInputValue != '' && passwordInputValue != ''){
+						$.cookie('username',usernameInputValue, {expires:7,path:'/'});
+						$.cookie('password',passwordInputValue, {expires:7,path:'/'});
+					}
+		    	}
+		    	
 	    	});
 	    	
 	    	// 弹出登陆错误信息
@@ -222,10 +261,7 @@
 	    		$(this).attr('src', '${base}/kaptcha.jpg?' + Math.floor(Math.random()*100) );
 	    	});
 	    	
-	    	// 记住用户名
-	    	$('#remember').click(function(){
-	    		
-	    	});
+
 
         });
     </script>

@@ -33,22 +33,8 @@ public class ArticleServiceImpl extends BaseServiceImpl<Article, Integer> implem
 	}
 
 	@Override
-	public void moveToArticleIdDir(String tempDir,String idDir) {
-		File srcDir = new File(tempDir);
-		File destDir = new File(idDir);
-		File[] files = srcDir.listFiles();
-		for (File file : files) {
-			try {
-				FileUtils.moveFileToDirectory(file, destDir, true);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}	
-	}
-
-	@Override
-	public List<Article> getAbbreviationService(Integer categoryId,Integer limitNumber) {
-		return articleDao.getAbbreviation(categoryId,limitNumber);
+	public List<Article> getNumListService(Integer categoryId,Integer Num) {
+		return articleDao.getNumList(categoryId,Num);
 	}
 
 	@Override

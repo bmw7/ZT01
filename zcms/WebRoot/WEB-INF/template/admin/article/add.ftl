@@ -58,10 +58,10 @@
             <label for="inputStandard" class="col-md-1 col-sm-1  control-label">文章分类</label>
             <div class="col-md-5 col-sm-5  admin-form">
                <label class="field select">        
-                <select name="articleCategoryIdAndType" id="articleCategoryIdAndType" class="custom_select">
-                    <option value="0and0"><span class="custom_option_title">请选择文章分类</span></option>
+                <select name="articleCategoryId" id="articleCategoryId" class="custom_select">
+                    <option value="0"><span class="custom_option_title">请选择文章分类</span></option>
                     <#list articleCategoryTree as articleCategory>
-                    	<option value="${articleCategory.id}and${articleCategory.type}">
+                    	<option value="${articleCategory.id}">
     					<#if articleCategory.grade != 0>
     						<#list 1..articleCategory.grade as i>&nbsp;&nbsp;</#list>
     					</#if>

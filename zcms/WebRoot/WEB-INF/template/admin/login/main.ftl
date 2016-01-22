@@ -134,21 +134,21 @@
                     <li>
                         <a href="${base}/admin/article/add" target="iframe">
                             <span class="glyphicons glyphicons-edit"></span>
-                            <span class="sidebar-title">内容发布</span>
+                            <span class="sidebar-title">文章发布</span>
                         </a>
                     </li>
 
                     <li>
                         <a href="${base}/admin/article/manage" target="iframe">
                             <span class="glyphicons glyphicons-file_import"></span>
-                            <span class="sidebar-title">内容管理</span>
+                            <span class="sidebar-title">文章管理</span>
                         </a>
                     </li>
 
                     <li>
                         <a href="${base}/admin/article/category/list" target="iframe">
                             <span class="glyphicons glyphicons-list"></span>
-                            <span class="sidebar-title">内容分类</span>
+                            <span class="sidebar-title">文章分类</span>
                         </a>
                     </li>
                     

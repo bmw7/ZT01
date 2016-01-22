@@ -183,7 +183,7 @@ public class StaticServiceImpl implements StaticService, ServletContextAware {
 		Template template = templateService.get("abbreviation");
 		String staticFileName = "abbreviation-"+categoryId+".html";
 		Map<String, Object> model = new HashMap<String, Object>();
-		List<Article> articles = articleService.getAbbreviationService(categoryId,limitNumber);
+		List<Article> articles = articleService.getNumListService(categoryId,limitNumber);
 		
 		/** 设置时间格式 */
 		List<String> dates = new ArrayList<String>();
