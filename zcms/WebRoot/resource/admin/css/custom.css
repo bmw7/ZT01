@@ -52,3 +52,5 @@
 .custom_page{ text-align:right;}
 
 #upload_zone{ height:260px;border:1px solid #dddddd;padding-top:10px;overflow:hidden;}
+
+#manageImageArea{ display:none; border:1px solid #dddddd;width:100%;margin-top:15px;}

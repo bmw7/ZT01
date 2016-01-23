@@ -13,7 +13,7 @@ import com.mavict.base.BaseService;
  * @date   2015年6月13日 下午6:53:33
  */
 
-public interface ArticleService extends BaseService<Article, Integer> {
+public interface ArticleService extends BaseService<Article, Long> {
 
 	/**
 	 * 获取前Num条文章
@@ -23,7 +23,7 @@ public interface ArticleService extends BaseService<Article, Integer> {
 	 * 
 	 * @return 文章实体List
 	 * */
-	List<Article> getNumListService(Integer categoryId,Integer Num);
+	List<Article> getNumListService(Long categoryId,Integer Num);
 	
 	/**
 	 * 获取指定目录下的文章分页操作
@@ -33,7 +33,7 @@ public interface ArticleService extends BaseService<Article, Integer> {
 	 * 
 	 * @return 
 	 * */
-	PagedContent<Article> getPagedContentByCategoryIdService(Integer categoryId,PageInfo pageInfo);
+	PagedContent<Article> getPagedContentByCategoryIdService(Long categoryId,PageInfo pageInfo);
 	
 	
 }

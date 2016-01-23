@@ -3,12 +3,11 @@
 <head>
     <meta charset="utf-8">
 	<title></title>
+	<link rel="stylesheet" type="text/css" href="${base}/resource/plugin/webuploader/dist/webuploader.css"> 
+    <link rel="stylesheet" type="text/css" href="${base}/resource/plugin/webuploader/image-upload/style.css"> 
 	<link rel="stylesheet" type="text/css" href="${base}/resource/admin/assets/skin/default_skin/css/theme_inner.css">
     <link rel="stylesheet" type="text/css" href="${base}/resource/admin/assets/admin-tools/admin-forms/css/admin-forms.css">
-    <link rel="stylesheet" type="text/css" href="${base}/resource/admin/css/custom.css"> 
-    <link rel="stylesheet" type="text/css" href="${base}/resource/plugin/webuploader/dist/webuploader.css"> 
-    <link rel="stylesheet" type="text/css" href="${base}/resource/plugin/webuploader/image-upload/style.css"> 
-    
+    <link rel="stylesheet" type="text/css" href="${base}/resource/admin/css/custom.css">   
 </head>
 <body>
 
@@ -18,24 +17,24 @@
     <div class="custom_title">
         <span class="custom_title_word">内容发布</span>
         
+        <span class="pull-right">
+        <label class="pull-right">&nbsp;&nbsp;设置置顶</label>
+		<div class="switch switch-primary switch-inline switch-xs pull-right">
+            <input id="isTop" name="isTop" type="checkbox" value="true">
+            <label for="isTop"></label>
+        </div>
+    	</span>
+        
     	<span class="pull-right">
-    	<label class="pull-right">&nbsp;&nbsp;搜索优化&nbsp;&nbsp;</label>  
+    	<label class="pull-right">&nbsp;&nbsp;搜索优化&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>  
         <div class="switch switch-primary switch-inline switch-xs pull-right">
             <input id="seo" type="checkbox">
             <label for="seo"></label>
         </div>
         </span>
-        
-        <span class="pull-right">
-        <label class="pull-right">&nbsp;&nbsp;设置置顶&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-		<div class="switch switch-primary switch-inline switch-xs pull-right">
-            <input id="isTop" name="isTop" type="checkbox" value="true">
-            <label for="isTop"></label>
-        </div>
-    	</span>    
-    	
+            
     	<span class="pull-right">
-        <label class="pull-right">&nbsp;&nbsp;图片操作&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+        <label class="pull-right">&nbsp;&nbsp;图片上传&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
 		<div class="switch switch-primary switch-inline switch-xs pull-right">
             <input id="isImage" name="isImage" type="checkbox" value="true">
             <label for="isImage"></label>
@@ -49,14 +48,11 @@
       
         <div class="form-group">
             <label class="col-md-1 col-sm-1  control-label">文章标题</label>
-            <div class="col-md-11 col-sm-11">
+            <div class="col-md-7 col-sm-7">
                 <input type="text" name="title" id="custom_title" class="form-control" placeholder="请输入文章标题">
-            </div>       
-        </div>
-
-        <div class="form-group">
-            <label for="inputStandard" class="col-md-1 col-sm-1  control-label">文章分类</label>
-            <div class="col-md-5 col-sm-5  admin-form">
+            </div>
+            
+            <div class="col-md-2 col-sm-2  admin-form">
                <label class="field select">        
                 <select name="articleCategoryId" id="articleCategoryId" class="custom_select">
                     <option value="0"><span class="custom_option_title">请选择文章分类</span></option>
@@ -73,16 +69,17 @@
 				</label>
             </div>
            
-            <label class="col-md-1 col-sm-1 control-label">文章来源</label>
-            <div class="col-md-5 col-sm-5 ">
+           
+            <div class="col-md-2 col-sm-2 ">
                 <input type="text" name="source" class="form-control" placeholder="请输入文章来源">
             </div>
-           
+                   
         </div>
+        
         
         <div class="custom_seo">
 	        <div class="form-group">
-		        <label class="col-md-1 col-sm-1 control-label">关键词</label>
+		        <label class="col-md-1 col-sm-1 control-label">关键词语</label>
 	            <div class="col-md-11 col-sm-11">
 	                <input type="text" name="seoKeywords" class="form-control" placeholder="请输入页面关键词">
 	            </div>     

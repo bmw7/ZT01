@@ -39,7 +39,6 @@ import com.mavict.article.category.ArticleCategory;
 import com.mavict.article.category.ArticleCategoryService;
 import com.mavict.article.image.ArticleImage;
 import com.mavict.article.image.ArticleImageService;
-import com.mavict.staticize.StaticService;
 import com.mavict.utils.FileOperateUtils;
 import com.mavict.utils.ImageUtils;
 import com.mavict.utils.TimeUtils;
@@ -136,9 +135,15 @@ public class ArticleController {
 	
 	/** 编辑文章  */
 	@RequestMapping("/edit/{articleId}")
-	public String edit(@PathVariable Integer articleId,ModelMap model){
-		model.addAttribute("article", articleService.getService(articleId));
+	public String edit(@PathVariable Long articleId,ModelMap model){
+		Article article = articleService.getService(articleId);
+		model.addAttribute("article", article);
 		model.addAttribute("articleCategoryTree", articleCategoryService.getTreeService());
+		/* 包含上传图片 */
+//		List<ArticleImage> articleImages = article.getArticleImages();
+//		if (articleImages != null) {
+//			System.out.println("-----------包含的图片数量为：------------"+articleImages.size());
+//		}
 		return "/admin/article/edit";
 	}
 	
@@ -177,7 +182,7 @@ public class ArticleController {
 	
 	/** 删除文章 */
 	@RequestMapping("/del/{articleId}")
-	public String del(@PathVariable Integer articleId,HttpServletRequest request,RedirectAttributes redirectAttributes){
+	public String del(@PathVariable Long articleId,HttpServletRequest request,RedirectAttributes redirectAttributes){
 		Article article = articleService.getService(articleId);
 		Long articleCategoryId = article.getArticleCategory().getId();
 		
@@ -207,7 +212,7 @@ public class ArticleController {
 		String ids[] = request.getParameter("ids").split("#");
 				
 		for (int id = 1; id < ids.length; id++) {
-			Article article = articleService.getService(Integer.parseInt(ids[id]));
+			Article article = articleService.getService(Long.parseLong(ids[id]));
 			try {                                     
 				solrServer.deleteById(String.valueOf(ids[id]));             /** solr索引删除 */
 			} catch (SolrServerException | IOException e) {
@@ -248,7 +253,7 @@ public class ArticleController {
 	@RequestMapping("/stick")
 	@ResponseBody
 	public String stick(HttpServletRequest request){
-		Article article = articleService.getService(Integer.parseInt(request.getParameter("id")));
+		Article article = articleService.getService(Long.parseLong(request.getParameter("id")));
 		String checked = request.getParameter("checked");
 		if ("true".equals(checked)) {
 			article.setCreateDate(TimeUtils.add1000(article.getCreateDate()));

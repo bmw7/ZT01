@@ -1,13 +1,13 @@
 $(document).ready(function(){
 	
 	// 若选择了 标题 类型，则取消提交
-	$('#inputForm').submit(function(){
-		var articleType = $('#articleCategoryIdAndType').val().split("and")[1];
-		if(parseInt(articleType) == 0){
-		    parent.bootAlert("您选择了标题类型，或未正确选择文章类型，请重新选择。");
-			return false;
-		}
-	});
+//	$('#inputForm').submit(function(){
+//		var articleType = $('#articleCategoryIdAndType').val().split("and")[1];
+//		if(parseInt(articleType) == 0){
+//		    parent.bootAlert("您选择了标题类型，或未正确选择文章类型，请重新选择。");
+//			return false;
+//		}
+//	});
 		
 	 // 获取浏览器缩放比
      function detectZoom(){ 

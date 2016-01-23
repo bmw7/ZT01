@@ -8,12 +8,10 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mavict.article.category.ArticleCategory;
 import com.mavict.article.category.ArticleCategoryService;
-import com.mavict.staticize.StaticService;
 
 /**
  * 
@@ -30,9 +28,7 @@ public class NavigationController {
 	
 	@Resource(name = "articleCategoryServiceImpl")
 	private ArticleCategoryService articleCategoryService;
-	
-	@Resource(name = "staticServiceImpl")
-	private StaticService staticService;
+
 	
 	/** 分类列表 */
 	@RequestMapping("/list")
@@ -150,12 +146,5 @@ public class NavigationController {
 		return "succss";	
 	}
 	
-	/** 生成导航静态片段文件*/
-	@RequestMapping("/snippet")
-	public String snippet(RedirectAttributes redirectAttributes){
-		staticService.createStaticFile(navigationService.getChildedAllService());
-		redirectAttributes.addFlashAttribute("info", "生成静态文件成功！");
-		return "redirect:/admin/setting/navigation/list";
-	}
 	
 }
