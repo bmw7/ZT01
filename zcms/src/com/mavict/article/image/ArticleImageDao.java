@@ -1,5 +1,8 @@
 package com.mavict.article.image;
 
+import java.util.List;
+
+import com.mavict.article.Article;
 import com.mavict.base.BaseDao;
 
 /**
@@ -10,4 +13,12 @@ import com.mavict.base.BaseDao;
  */
 public interface ArticleImageDao extends BaseDao<ArticleImage, Long> {
 
+	/**
+	 * 获取Article上传文章图片
+	 * 
+	 * @param article 某篇文章
+	 * 
+	 * @return 该篇文章上传的 
+	 * */
+	List<ArticleImage> getArticleImage(Article article);
 }

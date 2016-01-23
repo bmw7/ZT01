@@ -2,7 +2,9 @@ package com.mavict.freemarker.directive;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletContext;
@@ -10,6 +12,7 @@ import javax.servlet.ServletContext;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.ServletContextAware;
 
+import com.mavict.article.image.ArticleImage;
 import com.mavict.utils.FreemarkerUtils;
 
 import freemarker.core.Environment;
@@ -18,13 +21,13 @@ import freemarker.template.TemplateException;
 import freemarker.template.TemplateModel;
 
 /**
- * 
+ * 获取文章上传图片的缩略图URL
  * 
  * @author 沧海软件(北京)有限公司
- * @date 2015年12月1日 下午8:16:49
+ * @date 2015年12月2日 下午12:00:00
  */
 @Component
-public class UnitPicDirective extends BaseDirective  implements ServletContextAware{
+public class ArticleThumbnailDirective extends BaseDirective implements ServletContextAware {
 
 	private ServletContext servletContext;
 	
@@ -32,21 +35,19 @@ public class UnitPicDirective extends BaseDirective  implements ServletContextAw
 	public void setServletContext(ServletContext servletContext) {
 		this.servletContext = servletContext;
 	}
-	
+
 	@Override
 	public void execute(Environment env, Map params, TemplateModel[] loopVars, TemplateDirectiveBody body) throws TemplateException, IOException {
-		Integer exampleId = FreemarkerUtils.getParameter("id", Integer.class, params);
-		String dirFileString = File.separator+"content"+File.separator+"examples"+File.separator+exampleId+"_small";
-		File dirFile = new File(servletContext.getRealPath(dirFileString));
-		File[] files = dirFile.listFiles();
-		String fileName = "";
 		
-		if (files.length > 0) {
-			fileName = files[0].getName();
-		}
-		String imgSrc = "content/examples/"+String.valueOf(exampleId)+"_small/"+fileName;
+		ArticleImage articleImage = FreemarkerUtils.getParameter("image", ArticleImage.class, params);
+		String separator = (File.separator == "/") ? "/" : "\\\\";
+		String imageUrl = articleImage.getUrl();
+		String[] path = imageUrl.split(separator);
+		String thumbImageName = "thumbnail_"+path[path.length - 1]; 
+		String url = path[path.length - 4]+ "/" + path[path.length - 3] + "/" + path[path.length - 2] + "/" + thumbImageName;
+		
 		Map<String, Object> variables = new HashMap<String, Object>();
-		variables.put("imgSrc", imgSrc);
+		variables.put("imageUrl", url);
 		setLocalVariables(variables, env, body);
 	}
 }

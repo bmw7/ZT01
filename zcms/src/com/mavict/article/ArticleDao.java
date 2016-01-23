@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.mavict.PageInfo;
 import com.mavict.PagedContent;
+import com.mavict.article.image.ArticleImage;
 import com.mavict.base.BaseDao;
 
 /**
@@ -40,4 +41,5 @@ public interface ArticleDao extends BaseDao<Article, Long> {
 	 * @param categoryId 文章目录Id
 	 * */
 	Long count(Long categoryId);
+
 }

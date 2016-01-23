@@ -1,7 +1,11 @@
 package com.mavict.article.image;
 
+import java.util.List;
+
+import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 
+import com.mavict.article.Article;
 import com.mavict.base.BaseDaoImpl;
 
 /**
@@ -12,5 +16,13 @@ import com.mavict.base.BaseDaoImpl;
  */
 @Repository
 public class ArticleImageDaoImpl extends BaseDaoImpl<ArticleImage, Long> implements ArticleImageDao {
+
+	@Override
+	public List<ArticleImage> getArticleImage(Article article) {
+		String hql = "from ArticleImage where articleId=:articleId order by orders asc";
+		Query query = getSession().createQuery(hql);
+		query.setParameter("articleId", article.getId()); 
+		return query.list();
+	}
 
 }

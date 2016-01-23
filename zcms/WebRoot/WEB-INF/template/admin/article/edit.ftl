@@ -41,6 +41,7 @@
         </div>
     	</span>   
     	
+    	<#if articleImages?exists>
     	<span class="pull-right">
         <label class="pull-right">&nbsp;&nbsp;图片管理&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
 		<div class="switch switch-primary switch-inline switch-xs pull-right">
@@ -48,6 +49,7 @@
             <label for="manageImage"></label>
         </div>
     	</span>
+    	</#if>
     	
     	<label class="pull-right">  
 	    	<span class="glyphicons glyphicons-rewind"></span>&nbsp;&nbsp;<a href="javascript:;" class="custom_href" onclick="window.history.back()">返回分类</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -164,9 +166,25 @@
 	</form>
 	
 	<!-- 图片管理区域 -->
+	<#if articleImages?exists>
 	<div id="manageImageArea">
-		
+		<#list articleImages as articleImage>
+			<@articleThumbnail image = articleImage>
+				<div class="thumbnail" style="width:110px;float:left;margin-right:10px">
+			      <img src="${base}/${imageUrl}">
+			      <div class="caption" style="text-align:center">
+			    
+			        	<span class="glyphicons glyphicons-chevron-left fs20 pic_left" style="cursor:pointer"></span><span>&nbsp;&nbsp;</span>
+			        	<span class="glyphicons glyphicons-remove_2 fs20 pic_del" style="cursor:pointer"></span><span>&nbsp;&nbsp;</span>
+			        	<span class="glyphicons glyphicons-chevron-right fs20 pic_right" style="cursor:pointer"></span>
+			      
+			      </div>
+			    </div>
+			</@articleThumbnail>
+		</#list>
 	</div>
+	</#if>
+	
 </div>
                         
                         

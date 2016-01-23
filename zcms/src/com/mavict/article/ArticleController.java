@@ -140,10 +140,10 @@ public class ArticleController {
 		model.addAttribute("article", article);
 		model.addAttribute("articleCategoryTree", articleCategoryService.getTreeService());
 		/* 包含上传图片 */
-//		List<ArticleImage> articleImages = article.getArticleImages();
-//		if (articleImages != null) {
-//			System.out.println("-----------包含的图片数量为：------------"+articleImages.size());
-//		}
+		List<ArticleImage> articleImages = articleImageService.getArticleImageService(article);
+		if (articleImages.size() != 0) {
+			model.addAttribute("articleImages", articleImages);
+		}
 		return "/admin/article/edit";
 	}
 	

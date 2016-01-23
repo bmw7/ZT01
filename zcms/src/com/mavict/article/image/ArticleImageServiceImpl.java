@@ -1,9 +1,12 @@
 package com.mavict.article.image;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import com.mavict.article.Article;
 import com.mavict.base.BaseDao;
 import com.mavict.base.BaseServiceImpl;
 
@@ -23,6 +26,11 @@ public class ArticleImageServiceImpl extends BaseServiceImpl<ArticleImage, Long>
 	@Resource(name = "articleImageDaoImpl")
 	public void setBaseDao(BaseDao<ArticleImage, Long> baseDao) {
 		super.setBaseDao(baseDao);
+	}
+
+	@Override
+	public List<ArticleImage> getArticleImageService(Article article) {
+		return articleImageDao.getArticleImage(article);
 	}
 	
 }
