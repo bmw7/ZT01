@@ -20,7 +20,7 @@
         <span class="pull-right">
         <label class="pull-right">&nbsp;&nbsp;设置置顶</label>
 		<div class="switch switch-primary switch-inline switch-xs pull-right">
-            <input id="isTop" name="isTop" type="checkbox" value="true">
+            <input id="isTop" name="isTop" type="checkbox">
             <label for="isTop"></label>
         </div>
     	</span>
@@ -36,7 +36,7 @@
     	<span class="pull-right">
         <label class="pull-right">&nbsp;&nbsp;图片上传&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
 		<div class="switch switch-primary switch-inline switch-xs pull-right">
-            <input id="isImage" name="isImage" type="checkbox" value="true">
+            <input id="isImage" type="checkbox">
             <label for="isImage"></label>
         </div>
     	</span>  
@@ -53,11 +53,12 @@
             </div>
             
             <div class="col-md-2 col-sm-2  admin-form">
-               <label class="field select">        
-                <select name="articleCategoryId" id="articleCategoryId" class="custom_select">
-                    <option value="0"><span class="custom_option_title">请选择文章分类</span></option>
+            	
+                <label class="field select">        
+                <select name="articleCategoryIdAndType" id="articleCategoryIdAndType" class="custom_select">
+                    <option value="0and0"><span class="custom_option_title">请选择分类</span></option>
                     <#list articleCategoryTree as articleCategory>
-                    	<option value="${articleCategory.id}">
+                    	<option value="${articleCategory.id}and${articleCategory.type}">
     					<#if articleCategory.grade != 0>
     						<#list 1..articleCategory.grade as i>&nbsp;&nbsp;</#list>
     					</#if>
@@ -187,10 +188,10 @@ $(document).ready(function() {
 	// 图片上传 显示/隐藏
 	$('#isImage').click(function(){
 		if($(this).prop('checked')){   
-			$('.custom_images').show(300);
+			$('.custom_images').animate({height:"300px"},300);
 			parent.setFrameHeight(300);
 		}else{
-		    $('.custom_images').hide(300);
+		    $('.custom_images').animate({height:"0px"},300);
 		    parent.setFrameHeight(-300);
 		}
 	});

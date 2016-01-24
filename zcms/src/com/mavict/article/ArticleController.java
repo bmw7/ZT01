@@ -93,10 +93,11 @@ public class ArticleController {
 		return "/admin/article/list";
 	}	
 	
+	
 	/** 保存文章 */
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public String save(HttpSession session,RedirectAttributes redirectAttributes,Article article,Long articleCategoryId,String isTop){
-		
+	public String save(HttpSession session,RedirectAttributes redirectAttributes,Article article,String articleCategoryIdAndType,String isTop){
+		Long articleCategoryId = Long.valueOf(articleCategoryIdAndType.split("and")[0]);	
 		ArticleCategory articleCategory = new ArticleCategory();
 		articleCategory.setId(articleCategoryId);
 		
@@ -117,6 +118,8 @@ public class ArticleController {
 				articleImage.setArticle(article);
 				articleImage.setUrl(url);
 				articleImageService.saveService(articleImage);
+				articleImage.setOrders(Integer.valueOf(String.valueOf(articleImage.getId())));
+				articleImageService.updateService(articleImage);
 			}
 			session.setAttribute("webuploader_article", null);
 		}
@@ -149,10 +152,8 @@ public class ArticleController {
 	
 	/** 更新文章  */
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public String update(RedirectAttributes redirectAttributes,Integer id,Article article,String articleCategoryIdAndType,String newDate,String staticPath,String isTop,HttpServletRequest request) throws ParseException{	
-		String[] ids = articleCategoryIdAndType.split("and");
-		Long articleCategoryId = Long.valueOf(ids[0]);
-		Long articleCategoryType = Long.valueOf(ids[1]);
+	public String update(RedirectAttributes redirectAttributes,Long id,Article article,String articleCategoryIdAndType,String newDate,String isTop,HttpSession session) throws ParseException{	
+		Long articleCategoryId = Long.valueOf(articleCategoryIdAndType.split("and")[0]);	
 		ArticleCategory articleCategory = new ArticleCategory();
 		articleCategory.setId(articleCategoryId);
 		
@@ -167,6 +168,20 @@ public class ArticleController {
 		article.setArticleCategory(articleCategory);
 		
 		articleService.updateService(article);
+		
+		/* 存在保存上传图片的session - 图片操作*/
+		if (null != session.getAttribute("webuploader_article")) {
+			List<String> imageUrl = (List<String>) session.getAttribute("webuploader_article");
+			for (String url : imageUrl) {
+				ArticleImage articleImage = new ArticleImage();
+				articleImage.setArticle(article);
+				articleImage.setUrl(url);
+				articleImageService.saveService(articleImage);
+				articleImage.setOrders(Integer.valueOf(String.valueOf(articleImage.getId())));
+				articleImageService.updateService(articleImage);
+			}
+			session.setAttribute("webuploader_article", null);
+		}
 		
 		/* 提交到solr索引库 */
 		try {
@@ -225,30 +240,6 @@ public class ArticleController {
 	}
 	
 	
-	/** 生成静态条目片段文件 */
-	@RequestMapping("/abbreviate")
-	@ResponseBody
-	public String abbreviation(HttpServletRequest request) {
-		Integer categoryId = Integer.parseInt(request.getParameter("categoryId"));
-		String categoryName = request.getParameter("categoryName");
-		//staticService.createStaticFile(categoryName, categoryId, 5);  //取前5条item
-		return "生成静态条目片段成功！";
-	}
-	
-	/** 删除静态条目片段文件 */
-	@RequestMapping("/abbreviateDel")
-	@ResponseBody
-	public String abbreviationDel(HttpServletRequest request) {
-		Integer categoryId = Integer.parseInt(request.getParameter("categoryId"));
-		String abbrFilePath = File.separator+"snippet"+File.separator+"abbreviation-"+categoryId+".html";
-		File abbrFile = new File(request.getSession().getServletContext().getRealPath(abbrFilePath));
-		if (abbrFile.exists()) {
-			return abbrFile.delete() ? "删除静态条目片段文件成功！" : "删除静态条目片段文件失败！";
-		}else{
-			return "静态条目片段文件不存在！";
-		}		
-	}
-	
 	/** 设置/取消 置顶 */
 	@RequestMapping("/stick")
 	@ResponseBody
@@ -294,6 +285,30 @@ public class ArticleController {
 			
 		}
 		return false;
+	}
+	
+	@RequestMapping("/image/del")
+	@ResponseBody
+	public String imageDel(HttpServletRequest request){
+		Long imageId = Long.valueOf(request.getParameter("imageId"));
+		articleImageService.deleteService(imageId);
+		return "success";
+	}
+	
+	@RequestMapping("/image/move")
+	@ResponseBody
+	public String move(HttpServletRequest request){
+		Long originId = Long.valueOf(request.getParameter("originId"));
+		Long changeId = Long.valueOf(request.getParameter("changeId"));
+		ArticleImage origin = articleImageService.getService(originId);
+		ArticleImage change = articleImageService.getService(changeId);
+		int originOrders = origin.getOrders();
+		int changeOrders = change.getOrders();
+		origin.setOrders(changeOrders);
+		change.setOrders(originOrders);
+		articleImageService.updateService(origin);
+		articleImageService.updateService(change);
+		return "success";
 	}
 	
 }

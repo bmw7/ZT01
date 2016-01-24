@@ -72,7 +72,7 @@
 	        <div class="col-md-2 col-sm-2  admin-form">   
 	            <label class="field select">
 	                <select name="articleCategoryIdAndType" id="articleCategoryIdAndType">
-	                    <option value="">请选择</option>
+	                    <option value="0and0">请选择分类</option>
 	                    <#list articleCategoryTree as articleCategory>
 	                    	<option value="${articleCategory.id}and${articleCategory.type}" <#if articleCategory.id == article.articleCategory.id> selected="selected"</#if>>
 							<#if articleCategory.grade != 0>
@@ -174,9 +174,9 @@
 			      <img src="${base}/${imageUrl}">
 			      <div class="caption" style="text-align:center">
 			    
-			        	<span class="glyphicons glyphicons-chevron-left fs20 pic_left" style="cursor:pointer"></span><span>&nbsp;&nbsp;</span>
-			        	<span class="glyphicons glyphicons-remove_2 fs20 pic_del" style="cursor:pointer"></span><span>&nbsp;&nbsp;</span>
-			        	<span class="glyphicons glyphicons-chevron-right fs20 pic_right" style="cursor:pointer"></span>
+			        	<span imageId="${articleImage.id}" class="glyphicons glyphicons-chevron-left fs20 pic_left" style="cursor:pointer"></span><span>&nbsp;&nbsp;</span>
+			        	<span imageId="${articleImage.id}" class="glyphicons glyphicons-remove_2 fs20 pic_del" style="cursor:pointer"></span><span>&nbsp;&nbsp;</span>
+			        	<span imageId="${articleImage.id}" class="glyphicons glyphicons-chevron-right fs20 pic_right" style="cursor:pointer"></span>
 			      
 			      </div>
 			    </div>
@@ -184,7 +184,7 @@
 		</#list>
 	</div>
 	</#if>
-	
+		    
 </div>
                         
                         
@@ -219,15 +219,6 @@ $(document).ready(function() {
 		}
 	});
 	
-	// 若选择了 标题 类型，则取消提交
-	$('#inputForm').submit(function(){
-		var articleType = $('#articleCategoryIdAndType').val().split("and")[1];
-		if(parseInt(articleType) == 0){
-			alert("您选择了 标题 类型，无法提交数据。请重新选择文章类型。");
-			return false;
-		}
-	});
-	
 	// seo 显示/隐藏
 	$('#seo').click(function(){
 		if($(this).prop('checked')){
@@ -241,14 +232,13 @@ $(document).ready(function() {
 	// 图片上传 显示/隐藏
 	$('#isImage').click(function(){
 		if($(this).prop('checked')){   
-			$('.custom_images').show(300);
+			$('.custom_images').animate({height:"300px"},300);
 			parent.setFrameHeight(300);
 		}else{
-		    $('.custom_images').hide(300);
+		    $('.custom_images').animate({height:"0px"},300);
 		    parent.setFrameHeight(-300);
 		}
 	});
-	
 	
 	// 图片管理
 	$('#manageImage').click(function(){
@@ -264,7 +254,59 @@ $(document).ready(function() {
 		}
 	});
 	
+	// 删除图片
+	$(document).on('click','.pic_del',function(){
+		$.ajax({
+			type : 'POST',
+			url : '${base}/admin/article/image/del',
+			data: {'imageId':$(this).attr("imageId")},
+			success:function(data){}
+		});
+		$(this).closest('.thumbnail').remove();
+	});
 
+	// 左移图片
+	$(document).on('click','.pic_left',function(){
+		var $thisParent = $(this).closest('.thumbnail');
+		var $prevParent = $thisParent.prev();
+		
+		var originId = $(this).attr("imageId")
+		var changeId = $prevParent.find('.pic_del').attr("imageId");
+		
+		if(changeId != null){
+			$.ajax({
+				method : 'POST',
+				url : '${base}/admin/article/image/move',
+				data : {'originId':originId,'changeId':changeId},
+				success: function(data){}
+			});
+		}
+	
+		$thisParent.insertBefore($prevParent);
+	});
+	
+
+	// 右移图片
+	$(document).on('click','.pic_right',function(){
+		var $thisParent = $(this).closest('.thumbnail');
+		var $backParent = $thisParent.next();
+		
+		var originId = $(this).attr("imageId")
+		var changeId = $backParent.find('.pic_del').attr("imageId");
+		
+		if(changeId != null){
+			$.ajax({
+				method : 'POST',
+				url : '${base}/admin/article/image/move',
+				data : {'originId':originId,'changeId':changeId},
+				success: function(data){}
+			});
+		}
+		
+		$thisParent.insertAfter($backParent);
+	});
+	
+	
 });
 	
 </script>

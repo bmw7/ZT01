@@ -27,7 +27,7 @@
 
 /** ���·���ҳ�� admin/article/add.ftl */
 .custom_seo{ display:none; }
-.custom_images{ display:none; }
+.custom_images{ height:0px;overflow:hidden; }
 .custom_select{ height:39px;width:100%;border:1px solid #dddddd;}
 .custom_option_title{ font-size:10px;padding-left:10px;}
 #editor{ width:100%;}

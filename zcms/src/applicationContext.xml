@@ -154,7 +154,6 @@
 				<entry key="locale"  value="${locale}" />
 				<entry key="setting" value="#{T(com.mavict.setting.SettingUtils).get()}" /> <!-- 需要替换 -->
 				<entry key="page"    value-ref="pageDirective" />
-				<entry key="abbr"    value-ref="abbrDirective" />
 				<entry key="logo"    value-ref="logoDirective" />
 				<entry key="articleThumbnail" value-ref="articleThumbnailDirective" />
 			</map>
