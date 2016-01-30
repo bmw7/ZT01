@@ -15,19 +15,19 @@ import com.mavict.base.BaseServiceImpl;
  * @date 2015年10月31日 下午8:42:32
  */
 @Service
-public class GuestbookServiceImpl extends BaseServiceImpl<Guestbook, Integer> implements GuestbookService {
+public class GuestbookServiceImpl extends BaseServiceImpl<Guestbook, Long> implements GuestbookService {
 
 	@Resource(name = "guestbookDaoImpl")
 	private GuestbookDao guestbookDao;
 	
 	@Override
 	@Resource(name = "guestbookDaoImpl")
-	public void setBaseDao(BaseDao<Guestbook, Integer> baseDao) {
+	public void setBaseDao(BaseDao<Guestbook, Long> baseDao) {
 		super.setBaseDao(baseDao);
 	}
 
 	@Override
-	public void updateReplyService(Integer id, HttpServletRequest request) {
+	public void updateReplyService(Long id, HttpServletRequest request) {
 		guestbookDao.reply(id, request);	
 	}
 	

@@ -9,6 +9,6 @@ import com.mavict.base.BaseService;
  * @date   2015年8月13日 上午11:46:23
  */
 
-public interface AccountPermService extends BaseService<AccountPerm, Integer> {
+public interface AccountPermService extends BaseService<AccountPerm, Long> {
 
 }

@@ -43,14 +43,14 @@ public class GuestbookController {
 	
 	/** 留言删除 */
 	@RequestMapping("/del/{id}")
-	public String delete(@PathVariable Integer id){
+	public String delete(@PathVariable Long id){
 		guestbookService.deleteService(id);
 		return "redirect:/admin/guestbook/list";
 	}
 	
 	/** 回复留言 */
 	@RequestMapping("/reply/{id}")
-	public String reply(@PathVariable Integer id,HttpServletRequest request){
+	public String reply(@PathVariable Long id,HttpServletRequest request){
 		guestbookService.updateReplyService(id, request);
 		return "redirect:/admin/guestbook/list";
 	}

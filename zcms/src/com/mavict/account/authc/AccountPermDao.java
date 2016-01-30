@@ -9,6 +9,6 @@ import com.mavict.base.BaseDao;
  * @date   2015年8月13日 上午11:45:49
  */
 
-public interface AccountPermDao extends BaseDao<AccountPerm, Integer> {
+public interface AccountPermDao extends BaseDao<AccountPerm, Long> {
 
 }

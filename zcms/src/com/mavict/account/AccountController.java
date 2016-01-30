@@ -81,7 +81,7 @@ public class AccountController extends BaseController{
 	
 	/** 编辑 */
 	@RequestMapping("/edit/{id}")
-	public String edit(@PathVariable Integer id, ModelMap model){
+	public String edit(@PathVariable Long id, ModelMap model){
 		model.addAttribute("account", accountService.getService(id));
 		model.addAttribute("roles", accountRoleService.getAllService());
 		return "/admin/account/edit";
@@ -132,7 +132,7 @@ public class AccountController extends BaseController{
 		
 //		accountService.getAccountService("admin");
 		
-		accountService.getService(1);
+		accountService.getService(1L);
 		
 //		Account account = new Account();
 //		account.setUsername("zhangtao");

@@ -12,7 +12,7 @@ import com.mavict.base.BaseService;
  * @date   2015年6月9日 下午4:52:09
  */
 
-public interface AccountResetService extends BaseService<AccountReset, Integer> {
+public interface AccountResetService extends BaseService<AccountReset, Long> {
 	/** 通过邮箱找回（修改）密码 */	
 	String doCreateMailContentService(HttpServletRequest request,Account account);
 }

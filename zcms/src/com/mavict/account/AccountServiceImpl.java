@@ -16,14 +16,14 @@ import com.mavict.base.BaseServiceImpl;
  */
 
 @Service
-public class AccountServiceImpl extends BaseServiceImpl<Account, Integer> implements AccountService  {
+public class AccountServiceImpl extends BaseServiceImpl<Account, Long> implements AccountService  {
 
 	@Resource(name = "accountDaoImpl")
 	private AccountDao accountDao;
 	
 	@Override 
 	@Resource(name = "accountDaoImpl")
-	public void setBaseDao(BaseDao<Account, Integer> baseDao) {
+	public void setBaseDao(BaseDao<Account, Long> baseDao) {
 		super.setBaseDao(baseDao);
 	}
 	

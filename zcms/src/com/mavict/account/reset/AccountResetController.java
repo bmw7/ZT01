@@ -92,7 +92,7 @@ public class AccountResetController {
 	
 	/** 重置密码 */
 	@RequestMapping("/{uid}")
-	public String reset(@PathVariable Integer uid,HttpServletRequest request){
+	public String reset(@PathVariable Long uid,HttpServletRequest request){
 		String password = request.getParameter("password");
 		String encryptPassword = EncryptUtils.encrypt(password.trim());
 		Account account = accountService.getService(uid);

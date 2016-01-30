@@ -19,7 +19,7 @@ import com.mavict.base.BaseServiceImpl;
  * @date   2015年8月2日 上午10:13:34
  */
 @Service
-public class NavigationServiceImpl extends BaseServiceImpl<Navigation, Integer> implements NavigationService {
+public class NavigationServiceImpl extends BaseServiceImpl<Navigation, Long> implements NavigationService {
 	
 	@Resource(name = "navigationDaoImpl")
 	private NavigationDao navigationDao;
@@ -29,7 +29,7 @@ public class NavigationServiceImpl extends BaseServiceImpl<Navigation, Integer> 
 	
 	@Override
 	@Resource(name = "navigationDaoImpl")
-	public void setBaseDao(BaseDao<Navigation, Integer> baseDao) {
+	public void setBaseDao(BaseDao<Navigation, Long> baseDao) {
 		super.setBaseDao(baseDao);
 	}
 
@@ -150,7 +150,7 @@ public class NavigationServiceImpl extends BaseServiceImpl<Navigation, Integer> 
 
 	
 	@Override
-	public void updateSequenceService(Integer myId, Integer rpId,Integer myOrders, Integer rpOrders) {
+	public void updateSequenceService(Long myId, Long rpId,Integer myOrders, Integer rpOrders) {
 		Navigation myNavigation = navigationDao.get(myId);
 		myNavigation.setOrders(rpOrders);
 		navigationDao.update(myNavigation);
@@ -161,7 +161,7 @@ public class NavigationServiceImpl extends BaseServiceImpl<Navigation, Integer> 
 	}
 
 	@Override
-	public boolean doIsChildService(Integer parentId) {
+	public boolean doIsChildService(Long parentId) {
 		return navigationDao.hasChild(parentId);
 	}
 
