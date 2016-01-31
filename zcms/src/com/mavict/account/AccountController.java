@@ -54,7 +54,7 @@ public class AccountController extends BaseController{
 	
 	/** 保存 */
 	@RequestMapping("/save")
-	public String save(RedirectAttributes redirectAttributes,Account account, Boolean isEnabled, Long accountRoleId){
+	public String save(RedirectAttributes redirectAttributes,Account account, Boolean isEnabled, Integer accountRoleId){
 		account.setIsEnabled(isEnabled);
 		account.setIsLocked(false);
 		account.setLoginCount(0);
@@ -89,7 +89,7 @@ public class AccountController extends BaseController{
 	
 	/** 更新 */
 	@RequestMapping("/update")
-	public String update(RedirectAttributes redirectAttributes,Account account, String newPassword, Long roleId, boolean isEnabled, boolean isLocked,HttpServletRequest request){
+	public String update(RedirectAttributes redirectAttributes,Account account, String newPassword, Integer roleId, boolean isEnabled, boolean isLocked,HttpServletRequest request){
 		/** 密码表单不为空,重置密码 */
 		if (!(newPassword == null ||"".equals(newPassword))) {
 			account.setPassword(EncryptUtils.encrypt(newPassword));

@@ -94,7 +94,7 @@ public class NavigationServiceImpl extends BaseServiceImpl<Navigation, Integer> 
 		int grade = (navigation.getParent() == null) ? 0 : (navigation.getParent().getGrade() + 1) ;
 		
 		/** 获取上级导航实例.一级栏目无上级实例,设置其上级实例id为0 */
-		Navigation parent = (navigation.getParent() == null) ? new Navigation(0L) : navigation.getParent();
+		Navigation parent = (navigation.getParent() == null) ? new Navigation(0) : navigation.getParent();
 		
 		/** 表单是否填写了自定义的名称和URL */
 		String navName = (null == navigation.getName() || "".equals(navigation.getName())) ? articleCategory.getName() : navigation.getName();

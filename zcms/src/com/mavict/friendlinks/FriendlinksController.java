@@ -45,7 +45,7 @@ public class FriendlinksController {
 	}
 	
 	@RequestMapping("/submit/{id}")
-	public String submit(@RequestParam MultipartFile myfile,@PathVariable Long id,HttpServletRequest request,Friendlinks friendlinks){
+	public String submit(@RequestParam MultipartFile myfile,@PathVariable Integer id,HttpServletRequest request,Friendlinks friendlinks){
 		friendlinks.setId(id);
 		friendlinks.setName(request.getParameter("name"));
 		friendlinks.setOrders(Integer.valueOf(request.getParameter("orders")));

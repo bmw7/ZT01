@@ -123,7 +123,7 @@ public class NavigationController {
 	
 	/** 更新 */
 	@RequestMapping("/update")
-	public String update(Navigation navigation,Long parentId,RedirectAttributes redirectAttributes){
+	public String update(Navigation navigation,Integer parentId,RedirectAttributes redirectAttributes){
 		if(null != parentId){
 			Navigation parent = new Navigation();
 			parent.setId(parentId);

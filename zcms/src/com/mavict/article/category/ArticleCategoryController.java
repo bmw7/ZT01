@@ -48,7 +48,7 @@ public class ArticleCategoryController {
 	
 	/** 保存 */
 	@RequestMapping("/save")
-	public String save(RedirectAttributes redirectAttributes,ArticleCategory articleCategory,Long parentId,Integer type){
+	public String save(RedirectAttributes redirectAttributes,ArticleCategory articleCategory,Integer parentId,Integer type){
 		ArticleCategory parent = new ArticleCategory();
 		parent.setId(parentId);
 		parent.setType(type);
