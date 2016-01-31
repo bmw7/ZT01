@@ -73,6 +73,11 @@ public class BaseServiceImpl<T,ID extends Serializable> implements BaseService<T
 	}
 
 	@Override
+	public List<T> getContentService(String queryClause) {
+		return baseDao.getContent(queryClause);
+	}
+	
+	@Override
 	public PagedContent<T> getPagedContentService(PageInfo pageInfo) {
 		return baseDao.getPagedContent(pageInfo);
 	}
@@ -81,5 +86,6 @@ public class BaseServiceImpl<T,ID extends Serializable> implements BaseService<T
 	public PagedContent<T> getConditionPagedContentService(PageInfo pageInfo,String queryColumn, Object queryValue,String orderColumn,String sequence) {
 		return baseDao.getConditionPagedContent(pageInfo, queryColumn, queryValue,orderColumn,sequence);
 	}
+
 
 }

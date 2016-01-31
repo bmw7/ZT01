@@ -42,5 +42,10 @@ public class ArticleServiceImpl extends BaseServiceImpl<Article, Integer> implem
 		return articleDao.getPagedContentByCategoryId(categoryId, pageInfo);
 	}
 
+	@Override
+	public List<Article> getMemberService() {
+		return articleDao.getMember();
+	}
+
 	
 }

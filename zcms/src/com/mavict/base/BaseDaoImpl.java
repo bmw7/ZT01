@@ -96,6 +96,13 @@ public class BaseDaoImpl<T,ID extends Serializable> implements BaseDao<T, ID>{
 		String hql = "from "+entityClass.getSimpleName();
 		return getSession().createQuery(hql).list();
 	}
+	
+	@Override
+	public List<T> getContent(String queryClause) {
+		String hql = "from "+entityClass.getSimpleName() + " " + queryClause;
+		Query query = getSession().createQuery(hql);
+		return query.list();
+	}
 
 	@Override
 	public Long count() {

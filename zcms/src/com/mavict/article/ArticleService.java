@@ -35,5 +35,5 @@ public interface ArticleService extends BaseService<Article, Integer> {
 	 * */
 	PagedContent<Article> getPagedContentByCategoryIdService(Integer categoryId,PageInfo pageInfo);
 	
-	
+	List<Article> getMemberService();
 }

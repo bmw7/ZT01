@@ -47,4 +47,13 @@ public class ArticleDaoImpl extends BaseDaoImpl<Article, Integer> implements Art
 		return (Long) query.uniqueResult();
 	}
 
+	@Override
+	public List<Article> getMember() {
+		String hql = "from Article where articleCategoryId = 1";
+		Query query = getSession().createQuery(hql);
+		query.setFirstResult(0);
+		query.setMaxResults(5);	
+		return query.list();
+	}
+
 }

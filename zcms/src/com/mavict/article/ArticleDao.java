@@ -41,5 +41,7 @@ public interface ArticleDao extends BaseDao<Article, Integer> {
 	 * @param categoryId 文章目录Id
 	 * */
 	Long count(Integer categoryId);
+	
+	List<Article> getMember();
 
 }

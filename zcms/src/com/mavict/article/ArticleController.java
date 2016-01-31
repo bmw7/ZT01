@@ -118,7 +118,7 @@ public class ArticleController {
 				articleImage.setArticle(article);
 				articleImage.setUrl(url);
 				articleImageService.saveService(articleImage);
-				articleImage.setOrders(Integer.valueOf(String.valueOf(articleImage.getId())));
+				articleImage.setOrders(articleImage.getId());
 				articleImageService.updateService(articleImage);
 			}
 			session.setAttribute("webuploader_article", null);
@@ -177,7 +177,7 @@ public class ArticleController {
 				articleImage.setArticle(article);
 				articleImage.setUrl(url);
 				articleImageService.saveService(articleImage);
-				articleImage.setOrders(Integer.valueOf(String.valueOf(articleImage.getId())));
+				articleImage.setOrders(articleImage.getId());
 				articleImageService.updateService(articleImage);
 			}
 			session.setAttribute("webuploader_article", null);
@@ -269,7 +269,7 @@ public class ArticleController {
 
 			/* 上传成功  */
 			if (null != file) {
-				ImageUtils.thumbnailImage(file, 100, 100, "thumbnail_", true);          // 生成缩略图
+				ImageUtils.thumbnailImage(file, 214, 214, "thumbnail_", true);          // 生成缩略图
 				
 				/* 图片地址存入名为 webuploader_article的 session*/		
 				@SuppressWarnings("unchecked")

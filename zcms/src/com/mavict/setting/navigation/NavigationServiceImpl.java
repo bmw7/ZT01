@@ -203,6 +203,11 @@ public class NavigationServiceImpl extends BaseServiceImpl<Navigation, Integer> 
 		}
 		return result;
 	}
+
+	@Override
+	public List<Navigation> getNavService() {
+		return navigationDao.getAll();
+	}
 	
 
 }

@@ -31,6 +31,15 @@ public interface BaseService<T,ID extends Serializable> {
 	List<T> getEntitiesService(String columnName, Object queryObject); // 返回实体
 	List<T> getAllService(); // 返回所有实体
 	
+	/**
+	 * 获取满足查询语句的所有实体
+	 * 
+	 * @param queryClause 查询语句
+	 * 
+	 * @return 所有符合查询条件的实体List
+	 * */
+	List<T> getContentService(String queryClause); 
+	
 	/** 获取分页 */
     PagedContent<T> getPagedContentService(PageInfo pageInfo);
     

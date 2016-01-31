@@ -23,6 +23,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.mavict.PageInfo;
 import com.mavict.article.Article;
 import com.mavict.article.ArticleService;
+import com.mavict.article.category.ArticleCategoryService;
+import com.mavict.article.image.ArticleImage;
+import com.mavict.article.image.ArticleImageService;
+import com.mavict.friendlinks.FriendlinksService;
+import com.mavict.setting.navigation.NavigationService;
 
 /**
  * Controller - 文章客户端
@@ -36,46 +41,88 @@ public class ArticleController {
 	@Resource(name = "articleServiceImpl")
 	private ArticleService articleService;
 	
+	@Resource(name = "navigationServiceImpl")
+	private NavigationService navigationService;
+	
+	@Resource(name = "articleImageServiceImpl")
+	private ArticleImageService articleImageService;
+	
+	@Resource(name = "articleCategoryServiceImpl")
+	private ArticleCategoryService articleCategoryService;
+	
+	@Resource(name = "friendlinksServiceImpl")
+	private FriendlinksService friendlinksService;
+	
 	@Resource(name = "solrServerCore0")
 	private SolrServer solrServer;
 	
 	/* 首页 */
 	@RequestMapping("/")
 	public String index(ModelMap model){
-		Integer[][] groups = new Integer[][]{{17, 3},{5,8},{7,7},{6,6},{4,6},{1,8},{2,8},{3,8}};
+		// 多文章块列表
+		Integer[][] groups = new Integer[][]{{23,10},{4,10},{11,10},{12,10},{14,10},{15,10},{16,10},{17,10},{18,10},{19,10},{21,10}};
 		addAttributes("article", "more", groups, model);
+		// 导航菜单
+		model.addAttribute("navigations", navigationService.getNavService());
+		// 团队成员
+		List<Article> members = articleService.getMemberService();
+		model.addAttribute("members", members);
+		// 友情链接
+		model.addAttribute("links", friendlinksService.getAllService());
+		
+		
 		return "/client/index";
 	}
 	
 	/* 单篇类文章 - 单篇展示 */
-	@RequestMapping("/article/{id}")
+	@RequestMapping("/article/{id}.html")
 	public String article(@PathVariable Integer id,ModelMap model){
 		model.addAttribute("article", articleService.getService(id));
+		model.addAttribute("navigations", navigationService.getNavService());
+		return "/client/article/article";
+	}
+	
+	/* 单篇类文章 - 单篇展示 有图片类 */
+	@RequestMapping("/show/{id}.html")
+	public String show(@PathVariable Integer id,ModelMap model){
+		model.addAttribute("article", articleService.getService(id));
+		model.addAttribute("navigations", navigationService.getNavService());
 		return "/client/article/article";
 	}
 	
 	/* 多篇类文章 - 单篇展示 */
-	@RequestMapping("/articles/{id}")
+	@RequestMapping("/articles/{id}.html")
 	public String articles(@PathVariable Integer id,ModelMap model){
 		model.addAttribute("article", articleService.getService(id));
+		model.addAttribute("navigations", navigationService.getNavService());
+		// 友情链接
+		model.addAttribute("links", friendlinksService.getAllService());
+		
 		return "/client/article/articles";
 	}
 	
 	/* 无图片类文章列表 */
-	@RequestMapping("/list/{categoryId}")
+	@RequestMapping("/list/{categoryId}.html")
 	public String list(@PathVariable Integer categoryId,ModelMap model,PageInfo pageInfo){
-		pageInfo.setPageSize(30);
+		pageInfo.setPageSize(20);
 		model.addAttribute("pagedContent", articleService.getPagedContentByCategoryIdService(categoryId, pageInfo));
-		model.addAttribute("pageUrl", "testurl");
+		model.addAttribute("pageUrl", "/list/"+categoryId+".html");
+		// 导航菜单
+		model.addAttribute("navigations", navigationService.getNavService());
+		// 友情链接
+		model.addAttribute("links", friendlinksService.getAllService());
+		// 目录名称
+		model.addAttribute("articleCategoryName", articleCategoryService.getService(categoryId).getName());
+
 		return "/client/article/list";
 	}
 	
 	/* 有图片类文章列表 */
-	@RequestMapping("/lists/{categoryId}")
+	@RequestMapping("/lists/{categoryId}.html")
 	public String lists(@PathVariable Integer categoryId,ModelMap model,PageInfo pageInfo){
-		pageInfo.setPageSize(30);
+		pageInfo.setPageSize(20);
 		model.addAttribute("pagedContent", articleService.getPagedContentByCategoryIdService(categoryId, pageInfo));
-		model.addAttribute("pageUrl", "testurl");
+		model.addAttribute("pageUrl", "/lists/"+categoryId+".html");
 		return "/client/article/lists";
 	}
 	

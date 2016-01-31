@@ -31,6 +31,15 @@ public interface BaseDao<T,ID extends Serializable> {
 	List<T> getEntities(String columnName,Object queryValue);
 	List<T> getAll(); // 获取所有实体
 	
+	/**
+	 * 获取满足查询语句的所有实体
+	 * 
+	 * @param queryClause 查询语句
+	 * 
+	 * @return 所有符合查询条件的实体List
+	 * */
+	List<T> getContent(String queryClause); 
+	
 	/** 统计 */
 	Long count();
 	

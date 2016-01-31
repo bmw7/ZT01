@@ -36,4 +36,11 @@ public interface NavigationService extends BaseService<Navigation, Integer> {
 	
 	/** 得到按照塞满各级子栏目的所有实体 */
 	List<Navigation> getChildedAllService();
+	
+	/**
+	 * 得到一级目录的导航菜单
+	 * 
+	 * @return 按照orders顺序的一级目录导航菜单
+	 * */
+	List<Navigation> getNavService();
 }
