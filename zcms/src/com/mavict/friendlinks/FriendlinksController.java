@@ -58,7 +58,7 @@ public class FriendlinksController {
 	}
 	
 	@RequestMapping("/del/{id}")
-	public String del(@PathVariable Integer id){
+	public String del(@PathVariable Long id){
 		friendlinksService.deleteService(id);
 		return "redirect:/admin/friendlinks/list";
 	}

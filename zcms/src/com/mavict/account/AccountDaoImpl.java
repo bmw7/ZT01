@@ -17,7 +17,7 @@ import com.mavict.utils.EncryptUtils;
  * @date   2015年6月3日 下午9:45:14
  */
 @Repository
-public class AccountDaoImpl extends BaseDaoImpl<Account, Integer>implements AccountDao {
+public class AccountDaoImpl extends BaseDaoImpl<Account, Long>implements AccountDao {
 
 	@Override
 	public Account getAccount(String username) {

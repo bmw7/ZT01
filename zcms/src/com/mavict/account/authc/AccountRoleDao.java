@@ -9,6 +9,6 @@ import com.mavict.base.BaseDao;
  * @date   2015年9月4日 上午11:37:33
  */
 
-public interface AccountRoleDao extends BaseDao<AccountRole, Integer> {
+public interface AccountRoleDao extends BaseDao<AccountRole, Long> {
 
 }

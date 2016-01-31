@@ -16,14 +16,14 @@ import com.mavict.base.BaseServiceImpl;
  * @date 2015年10月31日 下午8:49:54
  */
 @Service
-public class FriendlinksServiceImpl extends BaseServiceImpl<Friendlinks, Integer> implements FriendlinksService {
+public class FriendlinksServiceImpl extends BaseServiceImpl<Friendlinks, Long> implements FriendlinksService {
 
 	@Resource(name = "friendlinksDaoImpl")
 	private FriendlinksDao friendlinksDao;
 	
 	@Override
 	@Resource(name = "friendlinksDaoImpl")
-	public void setBaseDao(BaseDao<Friendlinks, Integer> baseDao) {
+	public void setBaseDao(BaseDao<Friendlinks, Long> baseDao) {
 		super.setBaseDao(baseDao);
 	}
 

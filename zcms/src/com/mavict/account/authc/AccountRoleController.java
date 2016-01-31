@@ -49,7 +49,7 @@ public class AccountRoleController {
 	
 	/** 编辑 */
 	@RequestMapping("/edit/{accountRoleId}")
-	public String edit(@PathVariable Integer accountRoleId,ModelMap model){
+	public String edit(@PathVariable Long accountRoleId,ModelMap model){
 		AccountRole accountRole = accountRoleService.getService(accountRoleId);
 		model.addAttribute("accountRole", accountRole);
 		
@@ -66,7 +66,7 @@ public class AccountRoleController {
 	
 	/** 删除 */
 	@RequestMapping("/del/{accountRoleId}")
-	public String del(@PathVariable Integer accountRoleId,RedirectAttributes redirectAttributes){
+	public String del(@PathVariable Long accountRoleId,RedirectAttributes redirectAttributes){
 		/** 系统角色不能删除*/
 		if (accountRoleId == 1) {
 			redirectAttributes.addFlashAttribute("info", "system role cannot be deleted!");
@@ -113,7 +113,7 @@ public class AccountRoleController {
 		List<String> permIds = Arrays.asList(accountPermIds);
 		List<AccountPerm> accountPerms = new ArrayList<AccountPerm>();
 		for (String permId : permIds) {
-			AccountPerm accountPerm = accountPermService.getService(Integer.valueOf(permId));
+			AccountPerm accountPerm = accountPermService.getService(Long.valueOf(String.valueOf(permId)));
 			accountPerms.add(accountPerm);
 		}
 		return accountPerms;

@@ -57,7 +57,7 @@ public class NavigationController {
 		
 		/** 判定添加的一级项目是文章类别 */
 		if ("articleCategory".equals(path[1])) {
-			ArticleCategory articleCategory = Integer.parseInt(path[0]) != 0 ? articleCategoryService.getService(Integer.parseInt(path[0])) : new ArticleCategory();
+			ArticleCategory articleCategory = Integer.parseInt(path[0]) != 0 ? articleCategoryService.getService(Long.valueOf(path[0])) : new ArticleCategory();
 			
 			navigationService.saveCategoryService(navigation,articleCategory);
 			redirectAttributes.addFlashAttribute("info", "添加导航栏目成功！");
@@ -77,8 +77,8 @@ public class NavigationController {
 		}
 		
 		if ("articleCategory".equals(path[2])) {
-			ArticleCategory articleCategory = Integer.parseInt(path[0]) != 0 ? articleCategoryService.getService(Integer.parseInt(path[0])) : new ArticleCategory();
-			Navigation parent = navigationService.getService(Integer.parseInt(path[1]));
+			ArticleCategory articleCategory = Integer.parseInt(path[0]) != 0 ? articleCategoryService.getService(Long.valueOf(String.valueOf(path[0]))) : new ArticleCategory();
+			Navigation parent = navigationService.getService(Long.valueOf(String.valueOf(path[1])));
 			
 			navigationService.saveChildService(navigation,parent,articleCategory);
 			redirectAttributes.addFlashAttribute("info", "添加子栏目成功！");
@@ -89,7 +89,7 @@ public class NavigationController {
 	
 	/** 删除 */
 	@RequestMapping("/del/{id}")
-	public String del(@PathVariable Integer id,RedirectAttributes redirectAttributes){
+	public String del(@PathVariable Long id,RedirectAttributes redirectAttributes){
 		if (navigationService.doIsChildService(id)) {
 			redirectAttributes.addFlashAttribute("info", "本栏目下还有子栏目，不能删除！");
 			return "redirect:/admin/setting/navigation/list";
@@ -104,19 +104,19 @@ public class NavigationController {
 	public String batchDel(HttpServletRequest request){
 		String ids[] = request.getParameter("ids").split("#");
 		for (int id = 1; id < ids.length; id++) {
-			Navigation navigation = navigationService.getService(Integer.parseInt(ids[id]));
+			Navigation navigation = navigationService.getService(Long.valueOf(String.valueOf(ids[id])));
 			if (navigation.getChild().size() != 0) {
 				return "有子栏目,无法删除.";
 			}
 			navigation.setChild(null);
-			navigationService.deleteService(Integer.parseInt(ids[id]));
+			navigationService.deleteService(Long.valueOf(String.valueOf(ids[id])));
 		}
 		return "删除成功！";
 	}
 	
     /** 编辑 */
 	@RequestMapping("/edit/{id}")
-	public String edit(@PathVariable Integer id,ModelMap model){
+	public String edit(@PathVariable Long id,ModelMap model){
 		model.addAttribute("navigation", navigationService.getService(id));
 		return "/admin/setting/navigation/edit";
 	}
@@ -138,8 +138,8 @@ public class NavigationController {
 	@RequestMapping("/move")
 	@ResponseBody
 	public String move(HttpServletRequest request){
-		Integer myId = Integer.parseInt(request.getParameter("myId"));
-		Integer rpId = Integer.parseInt(request.getParameter("rpId"));
+		Long myId = Long.valueOf(String.valueOf(request.getParameter("myId")));
+		Long rpId = Long.valueOf(String.valueOf(request.getParameter("rpId")));
 		Integer myOrders = Integer.parseInt(request.getParameter("myOrders"));
 		Integer rpOrders = Integer.parseInt(request.getParameter("rpOrders"));
 		navigationService.updateSequenceService(myId, rpId, myOrders, rpOrders);

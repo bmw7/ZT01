@@ -83,7 +83,7 @@ public class ArticleController {
 	
 	/** 管理文章 - 具体分类下文章列表  */
 	@RequestMapping("/manage/{categoryId}")
-	public String manageContent(@PathVariable Integer categoryId,@RequestParam(value = "pageNumber",required = false) Integer pageNumber,ModelMap model,PageInfo pageInfo){
+	public String manageContent(@PathVariable Long categoryId,@RequestParam(value = "pageNumber",required = false) Integer pageNumber,ModelMap model,PageInfo pageInfo){
 		if (pageNumber == null) {
 			pageNumber = 1;
 		}

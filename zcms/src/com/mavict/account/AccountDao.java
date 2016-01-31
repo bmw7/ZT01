@@ -9,7 +9,7 @@ import com.mavict.base.BaseDao;
  * @date   2015年6月3日 下午7:26:45
  */
 
-public interface AccountDao extends BaseDao<Account, Integer> {
+public interface AccountDao extends BaseDao<Account, Long> {
 	/** 根据 用户名 查找管理员实体 */
 	Account getAccount(String username); 
 	

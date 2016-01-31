@@ -14,7 +14,7 @@ import com.mavict.base.BaseDaoImpl;
  * @date 2015年10月31日 下午8:49:06
  */
 @Repository
-public class FriendlinksDaoImpl extends BaseDaoImpl<Friendlinks, Integer> implements FriendlinksDao {
+public class FriendlinksDaoImpl extends BaseDaoImpl<Friendlinks, Long> implements FriendlinksDao {
 
 	/** 获取links实体  按orders排列*/
 	@Override
