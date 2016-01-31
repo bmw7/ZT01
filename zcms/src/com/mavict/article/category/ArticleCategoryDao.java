@@ -11,7 +11,7 @@ import com.mavict.base.BaseDao;
  * @date   2015年6月13日 下午6:56:07
  */
 
-public interface ArticleCategoryDao extends BaseDao<ArticleCategory, Long> {
+public interface ArticleCategoryDao extends BaseDao<ArticleCategory, Integer> {
 	/**  获取所有分类  */
 	List<ArticleCategory> getAll();
 }

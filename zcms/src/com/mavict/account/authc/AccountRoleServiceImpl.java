@@ -14,14 +14,14 @@ import com.mavict.base.BaseServiceImpl;
  * @date   2015年9月4日 上午11:40:20
  */
 @Service
-public class AccountRoleServiceImpl extends BaseServiceImpl<AccountRole, Long> implements AccountRoleService {
+public class AccountRoleServiceImpl extends BaseServiceImpl<AccountRole, Integer> implements AccountRoleService {
 
 	@Resource(name = "accountRoleDaoImpl")
 	private AccountRoleDao accountRoleDao;
 
 	@Override
 	@Resource(name = "accountRoleDaoImpl")
-	public void setBaseDao(BaseDao<AccountRole, Long> baseDao) {
+	public void setBaseDao(BaseDao<AccountRole, Integer> baseDao) {
 		super.setBaseDao(baseDao);
 	}
 	

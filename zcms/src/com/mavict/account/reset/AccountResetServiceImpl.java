@@ -10,14 +10,14 @@ import com.mavict.base.BaseDao;
 import com.mavict.base.BaseServiceImpl;
 
 @Service
-public class AccountResetServiceImpl extends BaseServiceImpl<AccountReset, Long> implements AccountResetService {
+public class AccountResetServiceImpl extends BaseServiceImpl<AccountReset, Integer> implements AccountResetService {
 
 	@Resource(name = "accountResetDaoImpl")
 	private AccountResetDao accountResetDao;
 	
 	@Override
 	@Resource(name = "accountResetDaoImpl")
-	public void setBaseDao(BaseDao<AccountReset, Long> baseDao) {
+	public void setBaseDao(BaseDao<AccountReset, Integer> baseDao) {
 		super.setBaseDao(baseDao);
 	}
 

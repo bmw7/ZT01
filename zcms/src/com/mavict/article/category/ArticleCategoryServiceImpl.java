@@ -22,13 +22,13 @@ import com.mavict.setting.navigation.Navigation;
  * @date   2015年6月13日 下午7:01:18
  */
 @Service
-public class ArticleCategoryServiceImpl extends BaseServiceImpl<ArticleCategory, Long> implements ArticleCategoryService {
+public class ArticleCategoryServiceImpl extends BaseServiceImpl<ArticleCategory, Integer> implements ArticleCategoryService {
 	@Resource(name="articleCategoryDaoImpl")
 	private ArticleCategoryDao articleCategoryDao;
 	
 	@Override
 	@Resource(name="articleCategoryDaoImpl")
-	public void setBaseDao(BaseDao<ArticleCategory, Long> baseDao) {
+	public void setBaseDao(BaseDao<ArticleCategory, Integer> baseDao) {
 		super.setBaseDao(baseDao);
 	}
 
@@ -109,7 +109,7 @@ public class ArticleCategoryServiceImpl extends BaseServiceImpl<ArticleCategory,
 	
 	
 	@Override
-	public void updateSequenceService(Long myId, Long rpId,Integer myOrders, Integer rpOrders) {
+	public void updateSequenceService(Integer myId, Integer rpId,Integer myOrders, Integer rpOrders) {
 		ArticleCategory myArticleCategory = articleCategoryDao.get(myId);
 		myArticleCategory.setOrders(rpOrders);
 		articleCategoryDao.update(myArticleCategory);

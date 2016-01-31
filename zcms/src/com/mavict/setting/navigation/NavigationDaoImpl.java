@@ -15,14 +15,14 @@ import com.mavict.base.BaseDaoImpl;
  * @date   2015年8月2日 上午10:11:43
  */
 @Repository
-public class NavigationDaoImpl extends BaseDaoImpl<Navigation, Long> implements NavigationDao {
+public class NavigationDaoImpl extends BaseDaoImpl<Navigation, Integer> implements NavigationDao {
 	@Override
 	public List<Navigation> getAll() {
 		return getSession().createQuery("from Navigation order by orders asc").list();
 	}
 
 	@Override
-	public boolean hasChild(Long parentId) {
+	public boolean hasChild(Integer parentId) {
 		String hql = "from Navigation where parentId =:parentId";
 		Query query = getSession().createQuery(hql);
 		query.setLong("parentId", parentId);

@@ -11,6 +11,6 @@ import com.mavict.base.BaseDaoImpl;
  * @date   2015年8月13日 上午11:47:07
  */
 @Repository
-public class AccountPermDaoImpl extends BaseDaoImpl<AccountPerm, Long> implements AccountPermDao {
+public class AccountPermDaoImpl extends BaseDaoImpl<AccountPerm, Integer> implements AccountPermDao {
 
 }

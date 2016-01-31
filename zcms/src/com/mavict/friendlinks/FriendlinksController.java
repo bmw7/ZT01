@@ -45,7 +45,7 @@ public class FriendlinksController {
 	}
 	
 	@RequestMapping("/submit/{id}")
-	public String submit(@RequestParam MultipartFile myfile,@PathVariable Long id,HttpServletRequest request,Friendlinks friendlinks){
+	public String submit(@RequestParam MultipartFile myfile,@PathVariable Integer id,HttpServletRequest request,Friendlinks friendlinks){
 		friendlinks.setId(id);
 		friendlinks.setName(request.getParameter("name"));
 		friendlinks.setOrders(Integer.valueOf(request.getParameter("orders")));
@@ -58,7 +58,7 @@ public class FriendlinksController {
 	}
 	
 	@RequestMapping("/del/{id}")
-	public String del(@PathVariable Long id){
+	public String del(@PathVariable Integer id){
 		friendlinksService.deleteService(id);
 		return "redirect:/admin/friendlinks/list";
 	}

@@ -36,7 +36,7 @@ public class Navigation extends BaseEntity{
 		
 	}
 	
-	public Navigation(Long id) {
+	public Navigation(Integer id) {
 		super();
 		this.id = id;
 	}

@@ -11,7 +11,7 @@ import com.mavict.base.BaseService;
  * @date   2015年6月13日 下午7:00:19
  */
 
-public interface ArticleCategoryService extends BaseService<ArticleCategory, Long> {
+public interface ArticleCategoryService extends BaseService<ArticleCategory, Integer> {
 	
 	/** 获取分类树*/
 	List<ArticleCategory> getTreeService();
@@ -25,6 +25,6 @@ public interface ArticleCategoryService extends BaseService<ArticleCategory, Lon
 	List<ArticleCategory> getCategoryList();
 	
 	/** 调整顺序 */
-	void updateSequenceService(Long myId,Long rpId,Integer myOrders,Integer rpOrders);
+	void updateSequenceService(Integer myId,Integer rpId,Integer myOrders,Integer rpOrders);
 	
 }

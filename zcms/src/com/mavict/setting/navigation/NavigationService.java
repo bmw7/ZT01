@@ -12,7 +12,7 @@ import com.mavict.base.BaseService;
  * @date   2015年8月2日 上午10:12:48
  */
 
-public interface NavigationService extends BaseService<Navigation, Long> {
+public interface NavigationService extends BaseService<Navigation, Integer> {
 	/** 获取分类树*/
 	List<Navigation> getTreeService();
 	
@@ -23,7 +23,7 @@ public interface NavigationService extends BaseService<Navigation, Long> {
 	boolean hasChildren(List<Navigation> navigations,Navigation navigation);
 	
 	/** 判断navigation是否有下级分类*/
-	boolean doIsChildService(Long parentId);
+	boolean doIsChildService(Integer parentId);
 	
 	/** 将文章目录放入导航目录*/
 	void saveCategoryService(Navigation navigation,ArticleCategory articleCategory);
@@ -32,7 +32,7 @@ public interface NavigationService extends BaseService<Navigation, Long> {
 	void saveChildService(Navigation navigation,Navigation parent,ArticleCategory articleCategory);
 	
 	/** 调整顺序 */
-	void updateSequenceService(Long myId,Long rpId,Integer myOrders,Integer rpOrders);
+	void updateSequenceService(Integer myId,Integer rpId,Integer myOrders,Integer rpOrders);
 	
 	/** 得到按照塞满各级子栏目的所有实体 */
 	List<Navigation> getChildedAllService();

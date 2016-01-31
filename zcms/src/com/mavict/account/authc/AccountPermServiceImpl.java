@@ -14,14 +14,14 @@ import com.mavict.base.BaseServiceImpl;
  * @date   2015年8月13日 上午11:48:19
  */
 @Service
-public class AccountPermServiceImpl extends BaseServiceImpl<AccountPerm, Long> implements AccountPermService {
+public class AccountPermServiceImpl extends BaseServiceImpl<AccountPerm, Integer> implements AccountPermService {
 
 	@Resource(name = "accountPermDaoImpl")
 	private AccountPermDao accountPermDao;
 	
 	@Override
 	@Resource(name = "accountPermDaoImpl")
-	public void setBaseDao(BaseDao<AccountPerm, Long> baseDao) {
+	public void setBaseDao(BaseDao<AccountPerm, Integer> baseDao) {
 		super.setBaseDao(baseDao);
 	}
 

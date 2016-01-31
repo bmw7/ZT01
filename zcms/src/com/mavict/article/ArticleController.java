@@ -97,7 +97,7 @@ public class ArticleController {
 	/** 保存文章 */
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String save(HttpSession session,RedirectAttributes redirectAttributes,Article article,String articleCategoryIdAndType,String isTop){
-		Long articleCategoryId = Long.valueOf(articleCategoryIdAndType.split("and")[0]);	
+		Integer articleCategoryId = Integer.valueOf(articleCategoryIdAndType.split("and")[0]);	
 		ArticleCategory articleCategory = new ArticleCategory();
 		articleCategory.setId(articleCategoryId);
 		
@@ -138,7 +138,7 @@ public class ArticleController {
 	
 	/** 编辑文章  */
 	@RequestMapping("/edit/{articleId}")
-	public String edit(@PathVariable Long articleId,ModelMap model){
+	public String edit(@PathVariable Integer articleId,ModelMap model){
 		Article article = articleService.getService(articleId);
 		model.addAttribute("article", article);
 		model.addAttribute("articleCategoryTree", articleCategoryService.getTreeService());
@@ -153,7 +153,7 @@ public class ArticleController {
 	/** 更新文章  */
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public String update(RedirectAttributes redirectAttributes,Long id,Article article,String articleCategoryIdAndType,String newDate,String isTop,HttpSession session) throws ParseException{	
-		Long articleCategoryId = Long.valueOf(articleCategoryIdAndType.split("and")[0]);	
+		Integer articleCategoryId = Integer.valueOf(articleCategoryIdAndType.split("and")[0]);	
 		ArticleCategory articleCategory = new ArticleCategory();
 		articleCategory.setId(articleCategoryId);
 		
@@ -197,9 +197,9 @@ public class ArticleController {
 	
 	/** 删除文章 */
 	@RequestMapping("/del/{articleId}")
-	public String del(@PathVariable Long articleId,HttpServletRequest request,RedirectAttributes redirectAttributes){
+	public String del(@PathVariable Integer articleId,HttpServletRequest request,RedirectAttributes redirectAttributes){
 		Article article = articleService.getService(articleId);
-		Long articleCategoryId = article.getArticleCategory().getId();
+		Integer articleCategoryId = article.getArticleCategory().getId();
 		
 		/** solr 库删除 
 		 *  似有缓存:删除第二条数据时,先前删除的第一条数据才消失,第二条数据仍有。重启服务器第二条数据消失。
@@ -227,7 +227,7 @@ public class ArticleController {
 		String ids[] = request.getParameter("ids").split("#");
 				
 		for (int id = 1; id < ids.length; id++) {
-			Article article = articleService.getService(Long.parseLong(ids[id]));
+			Article article = articleService.getService(Integer.parseInt(ids[id]));
 			try {                                     
 				solrServer.deleteById(String.valueOf(ids[id]));             /** solr索引删除 */
 			} catch (SolrServerException | IOException e) {
@@ -244,7 +244,7 @@ public class ArticleController {
 	@RequestMapping("/stick")
 	@ResponseBody
 	public String stick(HttpServletRequest request){
-		Article article = articleService.getService(Long.parseLong(request.getParameter("id")));
+		Article article = articleService.getService(Integer.parseInt(request.getParameter("id")));
 		String checked = request.getParameter("checked");
 		if ("true".equals(checked)) {
 			article.setCreateDate(TimeUtils.add1000(article.getCreateDate()));
@@ -290,7 +290,7 @@ public class ArticleController {
 	@RequestMapping("/image/del")
 	@ResponseBody
 	public String imageDel(HttpServletRequest request){
-		Long imageId = Long.valueOf(request.getParameter("imageId"));
+		Integer imageId = Integer.valueOf(request.getParameter("imageId"));
 		articleImageService.deleteService(imageId);
 		return "success";
 	}
@@ -298,8 +298,8 @@ public class ArticleController {
 	@RequestMapping("/image/move")
 	@ResponseBody
 	public String move(HttpServletRequest request){
-		Long originId = Long.valueOf(request.getParameter("originId"));
-		Long changeId = Long.valueOf(request.getParameter("changeId"));
+		Integer originId = Integer.valueOf(request.getParameter("originId"));
+		Integer changeId = Integer.valueOf(request.getParameter("changeId"));
 		ArticleImage origin = articleImageService.getService(originId);
 		ArticleImage change = articleImageService.getService(changeId);
 		int originOrders = origin.getOrders();

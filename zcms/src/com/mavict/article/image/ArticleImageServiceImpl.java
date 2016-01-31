@@ -17,14 +17,14 @@ import com.mavict.base.BaseServiceImpl;
  * @date 2016年1月16日 上午11:08:34
  */
 @Service
-public class ArticleImageServiceImpl extends BaseServiceImpl<ArticleImage, Long> implements ArticleImageService {
+public class ArticleImageServiceImpl extends BaseServiceImpl<ArticleImage, Integer> implements ArticleImageService {
 
 	@Resource(name = "articleImageDaoImpl")
 	private ArticleImageDao articleImageDao;
 	
 	@Override
 	@Resource(name = "articleImageDaoImpl")
-	public void setBaseDao(BaseDao<ArticleImage, Long> baseDao) {
+	public void setBaseDao(BaseDao<ArticleImage, Integer> baseDao) {
 		super.setBaseDao(baseDao);
 	}
 

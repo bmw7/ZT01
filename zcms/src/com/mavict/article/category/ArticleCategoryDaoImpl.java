@@ -13,7 +13,7 @@ import com.mavict.base.BaseDaoImpl;
  * @date   2015年6月13日 下午6:58:31
  */
 @Repository
-public class ArticleCategoryDaoImpl extends BaseDaoImpl<ArticleCategory, Long> implements ArticleCategoryDao {
+public class ArticleCategoryDaoImpl extends BaseDaoImpl<ArticleCategory, Integer> implements ArticleCategoryDao {
 	@Override
 	public List<ArticleCategory> getAll() {
 		return getSession().createQuery("from ArticleCategory order by orders asc").list();

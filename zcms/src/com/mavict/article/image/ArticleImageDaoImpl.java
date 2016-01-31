@@ -15,7 +15,7 @@ import com.mavict.base.BaseDaoImpl;
  * @date 2016年1月16日 上午11:07:43
  */
 @Repository
-public class ArticleImageDaoImpl extends BaseDaoImpl<ArticleImage, Long> implements ArticleImageDao {
+public class ArticleImageDaoImpl extends BaseDaoImpl<ArticleImage, Integer> implements ArticleImageDao {
 
 	@Override
 	public List<ArticleImage> getArticleImage(Article article) {

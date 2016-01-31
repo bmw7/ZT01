@@ -19,7 +19,7 @@ import com.mavict.base.BaseServiceImpl;
  * @date   2015年8月2日 上午10:13:34
  */
 @Service
-public class NavigationServiceImpl extends BaseServiceImpl<Navigation, Long> implements NavigationService {
+public class NavigationServiceImpl extends BaseServiceImpl<Navigation, Integer> implements NavigationService {
 	
 	@Resource(name = "navigationDaoImpl")
 	private NavigationDao navigationDao;
@@ -29,7 +29,7 @@ public class NavigationServiceImpl extends BaseServiceImpl<Navigation, Long> imp
 	
 	@Override
 	@Resource(name = "navigationDaoImpl")
-	public void setBaseDao(BaseDao<Navigation, Long> baseDao) {
+	public void setBaseDao(BaseDao<Navigation, Integer> baseDao) {
 		super.setBaseDao(baseDao);
 	}
 
@@ -94,7 +94,7 @@ public class NavigationServiceImpl extends BaseServiceImpl<Navigation, Long> imp
 		int grade = (navigation.getParent() == null) ? 0 : (navigation.getParent().getGrade() + 1) ;
 		
 		/** 获取上级导航实例.一级栏目无上级实例,设置其上级实例id为0 */
-		Navigation parent = (navigation.getParent() == null) ? new Navigation(0L) : navigation.getParent();
+		Navigation parent = (navigation.getParent() == null) ? new Navigation(0) : navigation.getParent();
 		
 		/** 表单是否填写了自定义的名称和URL */
 		String navName = (null == navigation.getName() || "".equals(navigation.getName())) ? articleCategory.getName() : navigation.getName();
@@ -150,7 +150,7 @@ public class NavigationServiceImpl extends BaseServiceImpl<Navigation, Long> imp
 
 	
 	@Override
-	public void updateSequenceService(Long myId, Long rpId,Integer myOrders, Integer rpOrders) {
+	public void updateSequenceService(Integer myId, Integer rpId,Integer myOrders, Integer rpOrders) {
 		Navigation myNavigation = navigationDao.get(myId);
 		myNavigation.setOrders(rpOrders);
 		navigationDao.update(myNavigation);
@@ -161,7 +161,7 @@ public class NavigationServiceImpl extends BaseServiceImpl<Navigation, Long> imp
 	}
 
 	@Override
-	public boolean doIsChildService(Long parentId) {
+	public boolean doIsChildService(Integer parentId) {
 		return navigationDao.hasChild(parentId);
 	}
 

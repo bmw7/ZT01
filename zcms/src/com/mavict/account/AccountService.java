@@ -9,6 +9,6 @@ import com.mavict.base.BaseService;
  * @date   2015年6月3日 下午7:29:37
  */
 
-public interface AccountService extends BaseService<Account, Long> {
+public interface AccountService extends BaseService<Account, Integer> {
 
 }

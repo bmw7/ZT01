@@ -48,7 +48,7 @@ public class ArticleCategoryController {
 	
 	/** 保存 */
 	@RequestMapping("/save")
-	public String save(RedirectAttributes redirectAttributes,ArticleCategory articleCategory,Long parentId,Integer type){
+	public String save(RedirectAttributes redirectAttributes,ArticleCategory articleCategory,Integer parentId,Integer type){
 		ArticleCategory parent = new ArticleCategory();
 		parent.setId(parentId);
 		parent.setType(type);
@@ -63,7 +63,7 @@ public class ArticleCategoryController {
 	/** 编辑 */
 	@CacheEvict(value = "CUSTOM_CACHE", key = "'articleCategory'")
 	@RequestMapping("/edit/{id}")
-	public String edit(@PathVariable Long id,ModelMap model){
+	public String edit(@PathVariable Integer id,ModelMap model){
 		model.addAttribute("articleCategory", articleCategoryService.getService(id));
 		model.addAttribute("articleCategoryTree", articleCategoryService.getTreeService());
 		return "/admin/article/category/edit";
@@ -72,7 +72,7 @@ public class ArticleCategoryController {
 	/** 更新 */
 	@CacheEvict(value = "CUSTOM_CACHE", key = "'articleCategory'")
 	@RequestMapping("/update")
-	public String update(RedirectAttributes redirectAttributes,ArticleCategory articleCategory,Long parentId){
+	public String update(RedirectAttributes redirectAttributes,ArticleCategory articleCategory,Integer parentId){
 		ArticleCategory parent = articleCategoryService.getService(parentId);
 		articleCategory.setParent(parent);
 		articleCategory.setGrade(parent.getGrade()+1);
@@ -84,7 +84,7 @@ public class ArticleCategoryController {
 	/** 删除 */
 	@CacheEvict(value = "CUSTOM_CACHE", key = "'articleCategory'")
 	@RequestMapping("/del/{id}")
-	public String delete(@PathVariable Long id,RedirectAttributes redirectAttributes){
+	public String delete(@PathVariable Integer id,RedirectAttributes redirectAttributes){
 		List<ArticleCategory> articleCategories = articleCategoryService.getEntitiesService("parentId", id);
 		List<Article> articles = articleService.getEntitiesService("articleCategoryId", id);
 		
@@ -104,8 +104,8 @@ public class ArticleCategoryController {
 	@RequestMapping("/move")
 	@ResponseBody
 	public String move(HttpServletRequest request){
-		Long myId = Long.valueOf(String.valueOf(request.getParameter("myId")));
-		Long rpId = Long.valueOf(String.valueOf(request.getParameter("rpId")));
+		Integer myId = Integer.valueOf(request.getParameter("myId"));
+		Integer rpId = Integer.valueOf(request.getParameter("rpId"));
 		Integer myOrders = Integer.parseInt(request.getParameter("myOrders"));
 		Integer rpOrders = Integer.parseInt(request.getParameter("rpOrders"));
 		articleCategoryService.updateSequenceService(myId, rpId, myOrders, rpOrders);

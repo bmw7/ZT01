@@ -11,6 +11,6 @@ import com.mavict.base.BaseDaoImpl;
  * @date   2015年9月4日 上午11:39:18
  */
 @Repository
-public class AccountRoleDaoImpl extends BaseDaoImpl<AccountRole, Long> implements AccountRoleDao {
+public class AccountRoleDaoImpl extends BaseDaoImpl<AccountRole, Integer> implements AccountRoleDao {
 
 }
