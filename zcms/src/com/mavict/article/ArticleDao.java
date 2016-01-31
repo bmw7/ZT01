@@ -14,7 +14,7 @@ import com.mavict.base.BaseDao;
  * @date   2015年6月13日 下午6:51:56
  */
 
-public interface ArticleDao extends BaseDao<Article, Integer> {
+public interface ArticleDao extends BaseDao<Article, Long> {
 	/**
 	 * 获取前Num条文章
 	 * 
@@ -23,7 +23,7 @@ public interface ArticleDao extends BaseDao<Article, Integer> {
 	 * 
 	 * @return 文章实体List
 	 * */
-	List<Article> getNumList(Integer categoryId,Integer Num);
+	List<Article> getNumList(Long categoryId,Integer Num);
 	
 	/**
 	 * 获取指定目录下的文章分页操作
@@ -33,13 +33,13 @@ public interface ArticleDao extends BaseDao<Article, Integer> {
 	 * 
 	 * @return 
 	 * */
-	PagedContent<Article> getPagedContentByCategoryId(Integer categoryId,PageInfo pageInfo);
+	PagedContent<Article> getPagedContentByCategoryId(Long categoryId,PageInfo pageInfo);
 	
 	/**
 	 * 获取指定目录下文章的数目
 	 * 
 	 * @param categoryId 文章目录Id
 	 * */
-	Long count(Integer categoryId);
+	Long count(Long categoryId);
 
 }

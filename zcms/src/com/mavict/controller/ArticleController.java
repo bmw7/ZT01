@@ -42,28 +42,28 @@ public class ArticleController {
 	/* 首页 */
 	@RequestMapping("/")
 	public String index(ModelMap model){
-		Integer[][] groups = new Integer[][]{{17, 3},{5,8},{7,7},{6,6},{4,6},{1,8},{2,8},{3,8}};
+		Long[][] groups = new Long[][]{{17L, 3L},{5L,8L},{7L,7L},{6L,6L},{4L,6L},{1L,8L},{2L,8L},{3L,8L}};
 		addAttributes("article", "more", groups, model);
 		return "/client/index";
 	}
 	
 	/* 单篇类文章 - 单篇展示 */
 	@RequestMapping("/article/{id}")
-	public String article(@PathVariable Integer id,ModelMap model){
+	public String article(@PathVariable Long id,ModelMap model){
 		model.addAttribute("article", articleService.getService(id));
 		return "/client/article/article";
 	}
 	
 	/* 多篇类文章 - 单篇展示 */
 	@RequestMapping("/articles/{id}")
-	public String articles(@PathVariable Integer id,ModelMap model){
+	public String articles(@PathVariable Long id,ModelMap model){
 		model.addAttribute("article", articleService.getService(id));
 		return "/client/article/articles";
 	}
 	
 	/* 无图片类文章列表 */
 	@RequestMapping("/list/{categoryId}")
-	public String list(@PathVariable Integer categoryId,ModelMap model,PageInfo pageInfo){
+	public String list(@PathVariable Long categoryId,ModelMap model,PageInfo pageInfo){
 		pageInfo.setPageSize(30);
 		model.addAttribute("pagedContent", articleService.getPagedContentByCategoryIdService(categoryId, pageInfo));
 		model.addAttribute("pageUrl", "testurl");
@@ -72,7 +72,7 @@ public class ArticleController {
 	
 	/* 有图片类文章列表 */
 	@RequestMapping("/lists/{categoryId}")
-	public String lists(@PathVariable Integer categoryId,ModelMap model,PageInfo pageInfo){
+	public String lists(@PathVariable Long categoryId,ModelMap model,PageInfo pageInfo){
 		pageInfo.setPageSize(30);
 		model.addAttribute("pagedContent", articleService.getPagedContentByCategoryIdService(categoryId, pageInfo));
 		model.addAttribute("pageUrl", "testurl");
@@ -177,8 +177,8 @@ public class ArticleController {
 	 * 
 	 * @return 多栏目文章ftl模板属性
 	 * */
-	private void addAttributes(String entity,String more,Integer[][] categoryIdAndNums,ModelMap model){
-		for (Integer[] group : categoryIdAndNums) {
+	private void addAttributes(String entity,String more,Long[][] categoryIdAndNums,ModelMap model){
+		for (Long[] group : categoryIdAndNums) {
 			model.addAttribute(entity+"_"+String.valueOf(group[0]), articleService.getNumListService(group[0], Integer.valueOf(group[1].toString())));
 			model.addAttribute(more+"_"+String.valueOf(group[0]), group[0]);
 		}

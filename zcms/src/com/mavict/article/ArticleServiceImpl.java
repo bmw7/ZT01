@@ -21,24 +21,24 @@ import com.mavict.base.BaseServiceImpl;
  * @date   2015年6月13日 下午6:54:31
  */
 @Service
-public class ArticleServiceImpl extends BaseServiceImpl<Article, Integer> implements ArticleService {
+public class ArticleServiceImpl extends BaseServiceImpl<Article, Long> implements ArticleService {
 
 	@Resource(name = "articleDaoImpl")
 	private ArticleDao articleDao;
 	
 	@Override
 	@Resource(name = "articleDaoImpl")
-	public void setBaseDao(BaseDao<Article, Integer> baseDao) {
+	public void setBaseDao(BaseDao<Article, Long> baseDao) {
 		super.setBaseDao(baseDao);
 	}
 
 	@Override
-	public List<Article> getNumListService(Integer categoryId,Integer Num) {
+	public List<Article> getNumListService(Long categoryId,Integer Num) {
 		return articleDao.getNumList(categoryId,Num);
 	}
 
 	@Override
-	public PagedContent<Article> getPagedContentByCategoryIdService(Integer categoryId, PageInfo pageInfo) {
+	public PagedContent<Article> getPagedContentByCategoryIdService(Long categoryId, PageInfo pageInfo) {
 		return articleDao.getPagedContentByCategoryId(categoryId, pageInfo);
 	}
 

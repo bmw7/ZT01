@@ -16,10 +16,10 @@ import com.mavict.base.BaseDaoImpl;
  * @date   2015年6月13日 下午6:52:48
  */
 @Repository
-public class ArticleDaoImpl extends BaseDaoImpl<Article, Integer> implements ArticleDao {
+public class ArticleDaoImpl extends BaseDaoImpl<Article, Long> implements ArticleDao {
 
 	@Override
-	public List<Article> getNumList(Integer categoryId,Integer Num) {
+	public List<Article> getNumList(Long categoryId,Integer Num) {
 		String hql = "from Article where articleCategoryId=:categoryId order by id desc";
 		Query query = getSession().createQuery(hql);
 		query.setParameter("categoryId", categoryId);
@@ -29,7 +29,7 @@ public class ArticleDaoImpl extends BaseDaoImpl<Article, Integer> implements Art
 	}
 
 	@Override
-	public PagedContent<Article> getPagedContentByCategoryId(Integer categoryId, PageInfo pageInfo) {
+	public PagedContent<Article> getPagedContentByCategoryId(Long categoryId, PageInfo pageInfo) {
 		String hql = "from Article where articleCategoryId =:categoryId order by id desc";
 		Query query = getSession().createQuery(hql);
 		query.setParameter("categoryId", categoryId);
@@ -40,7 +40,7 @@ public class ArticleDaoImpl extends BaseDaoImpl<Article, Integer> implements Art
 	}
 
 	@Override
-	public Long count(Integer categoryId) {
+	public Long count(Long categoryId) {
 		String hql = "select count(*) from Article where articleCategoryId =:categoryId";
 		Query query = getSession().createQuery(hql);
 		query.setParameter("categoryId", categoryId);

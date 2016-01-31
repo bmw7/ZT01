@@ -19,15 +19,15 @@ public class BaseEntity implements Serializable {
 
 	private static final long serialVersionUID = 5220285063411628324L;
 	@Field
-	public Integer id;
+	public Long id;
 
 	@Id
 	@GeneratedValue
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
