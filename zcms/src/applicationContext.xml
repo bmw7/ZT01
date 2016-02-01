@@ -157,6 +157,7 @@
 				<entry key="logo"    value-ref="logoDirective" />
 				<entry key="articleThumbnail" value-ref="articleThumbnailDirective" />
 				<entry key="articleFirstThumbnail" value-ref="articleFirstThumbnailDirective" />
+				<entry key="articleImage" value-ref="articleImageDirective" />
 				<entry key="subTitle" value-ref="subTitleDirective" />	
 			</map>
 		</property>

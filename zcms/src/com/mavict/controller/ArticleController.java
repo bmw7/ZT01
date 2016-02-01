@@ -87,7 +87,11 @@ public class ArticleController {
 	public String show(@PathVariable Integer id,ModelMap model){
 		model.addAttribute("article", articleService.getService(id));
 		model.addAttribute("navigations", navigationService.getNavService());
-		return "/client/article/article";
+		
+		// 友情链接
+		model.addAttribute("links", friendlinksService.getAllService());
+		return "/client/article/show";
+		
 	}
 	
 	/* 多篇类文章 - 单篇展示 */
@@ -99,6 +103,16 @@ public class ArticleController {
 		model.addAttribute("links", friendlinksService.getAllService());
 		
 		return "/client/article/articles";
+	}
+	
+	/* 多篇类文章 - 单篇展示 有图片类 */
+	@RequestMapping("/shows/{id}.html")
+	public String shows(@PathVariable Integer id,ModelMap model){
+		model.addAttribute("article", articleService.getService(id));
+		model.addAttribute("navigations", navigationService.getNavService());
+		// 友情链接
+		model.addAttribute("links", friendlinksService.getAllService());
+		return "/client/article/shows";
 	}
 	
 	/* 无图片类文章列表 */
@@ -120,9 +134,15 @@ public class ArticleController {
 	/* 有图片类文章列表 */
 	@RequestMapping("/lists/{categoryId}.html")
 	public String lists(@PathVariable Integer categoryId,ModelMap model,PageInfo pageInfo){
-		pageInfo.setPageSize(20);
+		pageInfo.setPageSize(12);
 		model.addAttribute("pagedContent", articleService.getPagedContentByCategoryIdService(categoryId, pageInfo));
 		model.addAttribute("pageUrl", "/lists/"+categoryId+".html");
+		// 导航菜单
+		model.addAttribute("navigations", navigationService.getNavService());
+		// 友情链接
+		model.addAttribute("links", friendlinksService.getAllService());
+		// 目录名称
+		model.addAttribute("articleCategoryName", articleCategoryService.getService(categoryId).getName());
 		return "/client/article/lists";
 	}
 	

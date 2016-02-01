@@ -20,7 +20,6 @@
     <!-- 正文内容 -->
     <div class="row content">
         <div id="right"></div>
-        <div id="bottom"></div>
         <div class="container">
             <div class="col-md-4 scrollspy" >
                 <div id="nav" data-spy="affix"></div>
@@ -39,6 +38,9 @@
                     </#list>
                       
                 </table>
+                <@page pageNumber=pagedContent.pageNumber totalPages=pagedContent.totalPages pageUrl="${base}${pageUrl}">
+			        	<#include "/client/include/pagination.ftl">
+			    </@page>
             </div>
 
 
@@ -54,6 +56,7 @@
 
 <script src="${base}/resource/client/js/jquery.min.js"></script>
 <script src="${base}/resource/client/js/bootstrap.min.js"></script>
+<script src="${base}/resource/admin/js/pagination.js"></script>
 <script>
     $('#nav').affix({
         offset: {
