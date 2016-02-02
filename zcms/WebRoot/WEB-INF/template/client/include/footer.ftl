@@ -1,12 +1,2 @@
-<div class="container">
-   <div class="row">
-        <ul class="list-inline" id="first">
-            <#list links as link>
-            <li><a href="${link.url}">${link.name}</a></li>
-            </#list>
-        </ul>
-    </div>
-    <div class="row" id="second">
-       	 温州胜诉律师网&nbsp;&nbsp;版权所有&nbsp;&nbsp;&nbsp;&nbsp;Copyright ©2008-2016 ALL RIGHTS RECERVED.&nbsp;&nbsp;&nbsp;&nbsp;浙ICP备<a href="http://www.miitbeian.gov.cn"  target="_blank">15043901号-2</a>&nbsp;&nbsp;&nbsp;&nbsp;技术支持：<a href="http://www.webm.com.cn" target="_blank">沧海软件(北京)有限公司</a>
-    </div>
-</div>
+<div id="bottom_inner">温州刑事辩护律师网 版权所有 浙ICP备 <a href="http://www.miibeian.gov.cn">15043901号-1</a> 业务咨询电话：13738778655；Email：cuibo2006@126.com <br>
+地 址：浙江省温州市市府路西首新益大厦A幢4楼 邮 编：325000 电 话：0577-56891918 传 真：0577-88319477</div>

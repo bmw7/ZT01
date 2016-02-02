@@ -1,7 +1,7 @@
 requirejs.config({
-    baseUrl: '/zcms/resource/plugin/webuploader/dist',
+    baseUrl: '/resource/plugin/webuploader/dist',
     paths: {
-        jquery: '/zcms/resource/plugin/webuploader/image-upload/jquery'
+        jquery: '/resource/plugin/webuploader/image-upload/jquery'
     }
 });
 
@@ -69,11 +69,11 @@ require([ 'webuploader.flashonly' ], function( WebUploader ) {
             },
             dnd: '#dndArea',
             paste: '#uploader',
-            swf: '/zcms/resource/plugin/webuploader/dist/Uploader.swf',
+            swf: '/resource/plugin/webuploader/dist/Uploader.swf',
             chunked: true,
             // runtimeOrder: 'flash',
             sendAsBinary: true,
-            server: '/zcms/admin/article/uploadimages',
+            server: '/admin/article/uploadimages',
             fileNumLimit: 300,
             fileSizeLimit: 200 * 1024 * 1024,    // 200 M
             fileSingleSizeLimit: 50 * 1024 * 1024    // 50 M

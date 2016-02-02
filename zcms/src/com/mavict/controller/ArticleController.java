@@ -60,17 +60,12 @@ public class ArticleController {
 	@RequestMapping("/")
 	public String index(ModelMap model){
 		// 多文章块列表
-		Integer[][] groups = new Integer[][]{{23,10},{4,10},{11,10},{12,10},{14,10},{15,10},{16,10},{17,10},{18,10},{19,10},{21,10}};
+		Integer[][] groups = new Integer[][]{{7,7},{5,8},{17,3},{18,8},{6,6},{4,6},{19,4},{20,4},{1,8},{2,8},{3,8}};
 		addAttributes("article", "more", groups, model);
 		// 导航菜单
 		model.addAttribute("navigations", navigationService.getNavService());
-		// 团队成员
-		List<Article> members = articleService.getMemberService();
-		model.addAttribute("members", members);
 		// 友情链接
 		model.addAttribute("links", friendlinksService.getAllService());
-		
-		
 		return "/client/index";
 	}
 	
@@ -102,6 +97,10 @@ public class ArticleController {
 		// 友情链接
 		model.addAttribute("links", friendlinksService.getAllService());
 		
+		// 多文章块列表
+		Integer[][] groups = new Integer[][]{{17,3},{20,4}};
+		addAttributes("article", "more", groups, model);
+		
 		return "/client/article/articles";
 	}
 	
@@ -118,7 +117,7 @@ public class ArticleController {
 	/* 无图片类文章列表 */
 	@RequestMapping("/list/{categoryId}.html")
 	public String list(@PathVariable Integer categoryId,ModelMap model,PageInfo pageInfo){
-		pageInfo.setPageSize(20);
+		pageInfo.setPageSize(36);
 		model.addAttribute("pagedContent", articleService.getPagedContentByCategoryIdService(categoryId, pageInfo));
 		model.addAttribute("pageUrl", "/list/"+categoryId+".html");
 		// 导航菜单
@@ -127,6 +126,10 @@ public class ArticleController {
 		model.addAttribute("links", friendlinksService.getAllService());
 		// 目录名称
 		model.addAttribute("articleCategoryName", articleCategoryService.getService(categoryId).getName());
+		
+		// 多文章块列表
+		Integer[][] groups = new Integer[][]{{17,3},{20,4}};
+		addAttributes("article", "more", groups, model);
 
 		return "/client/article/list";
 	}

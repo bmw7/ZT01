@@ -1,428 +1,578 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>欢迎访问 - 温州胜诉律师网</title>
-    <link rel="stylesheet" href="${base}/resource/client/css/bootstrap.min.css">
-    <link rel="stylesheet" href="${base}/resource/client/css/swiper-3.2.7.min.css">
-    <link rel="stylesheet" href="${base}/resource/client/css/index.css">
-    <style>
-        .my-map { margin: 0 auto; width: 517px; height: 178px; }
-        .my-map .icon { background: url(http://lbs.amap.com/console/public/show/marker.png) no-repeat; }
-        .my-map .icon-cir { height: 31px; width: 28px; }
-        .my-map .icon-cir-red { background-position: -11px -5px; }
-        #wrap{margin-top:-119px;margin-left:6px;}
-    </style>
-    
+<title>温州刑事辩护律师网</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" href="${base}/resource/client/css/page_index.css" type="text/css" />
 </head>
-<body>
-<div class="container-fluid">
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" >
 
-	<#include "/client/include/header.ftl" >
-	
-    <!--大图banner-->
-    <div class="row" id="banner">
-
-        <img src="${base}/resource/client/images/banner1.png">
-
-    </div>
-
-    <!-- 律师团队 -->
-    <div class="container" id="group">
-        <div class="row" id="group_title"></div>
-        <div class="row" id="group_member">
-            
-            <#list members as member>
-            <div class="group_member">
-                <div class="photo"><img src="${base}/<@articleFirstThumbnail article=member>${imageUrl}</@articleFirstThumbnail>"></div>
-                <div class="title">${member.title}</div>
-                <div class="desc">${member.seoKeywords}}</div>
-                <a href="${base}/shows/${member.id}.html"><div class="more"></div></a>
-            </div>
-            </#list>
-       
-        </div>
-        <div class="row">
-            <a href="${base}/lists/1.html"><div id="group_more"></div></a>
-        </div>
-    </div>
-
-    <!-- 正文内容一 -->
-    <div class="row content1">
-        <div class="container">
-            <div class="row row_extend">
-
-                <div class="content_unit">
-                    <div class="content_unit_title">
-                       <span class="content_unit_title_left"><img src="${base}/resource/client/images/index_title_service.png"></span>
-                    </div>
-                    <div class="content_unit_main">
-                        <img src="${base}/resource/client/images/index_areas.png">
-                            <p>
-								私人律师，公司企业法律顾问；民商事、经济纠纷，公司、合伙企业经营纠纷；刑事辩护、行政诉讼、国家赔偿；婚姻、抚养、继承、房地产法律事务，购房律师法律服务； 
-								合同起草、修订，出具法律意见书；重大合同纠纷、知识产权、网络侵权纠纷； 其它法律服务项目。
-                            </p>
-                        <a href="${base}/list/2.html"><img src="${base}/resource/client/images/bg_area_more.png" border="0"></a>
-                    </div>
-                </div>
-
-                <div class="content_unit">
-                    <div class="content_unit_title">
-                        <div class="row">
-                            <div class="col-md-8">
-                                <span class="content_unit_title_left"><img src="${base}/resource/client/images/index_title_announce.png"></span>
-                            </div>
-                            <div class="col-md-4">
-                                <a href="${base}/list/${more_23}.html"><span class="content_unit_title_more"></span></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="content_unit_main">
-                    <#list article_23 as article>
-                        <div class="list"><div class="icon"><img src="${base}/resource/client/images/bg_item.png"></div><div class="title"><a href="${base}/articles/${article.id}.html"><@subTitle title="${article.title}" start=0 end=15>${title}</@subTitle></a></div><div class="time">${(article.createDate)?string("yyyy-MM-dd")}</div></div>
-					</#list>
-                    </div>
-                </div>
-
-                <div class="content_unit">
-                    <div class="content_unit_title">
-                        <div class="row">
-                            <div class="col-md-8">
-                                <span class="content_unit_title_left"><img src="${base}/resource/client/images/index_title_success.png"></span>
-                            </div>
-                            <div class="col-md-4">
-                                <a href="${base}/list/${more_4}.html"><span class="content_unit_title_more"></span></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="content_unit_main">
-                    <#list article_4 as article>
-                        <div class="list"><div class="icon"><img src="${base}/resource/client/images/bg_item.png"></div><div class="title"><a href="${base}/articles/${article.id}.html"><@subTitle title="${article.title}" start=0 end=15>${title}</@subTitle></a></div><div class="time">${(article.createDate)?string("yyyy-MM-dd")}</div></div>
-					</#list>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-    <!-- 正文内容二 -->
-    <div class="row content2">
-        <div class="container">
-            <div class="row row_extend">
-
-                <div class="content_unit">
-                    <div class="content_unit_title">
-                        <div class="row">
-                            <div class="col-md-8">
-                                <span class="content_unit_title_left"><img src="${base}/resource/client/images/index_title_consultant.png"></span>
-                            </div>
-                            <div class="col-md-4">
-                                <a href="${base}/list/${more_11}.html"><span class="content_unit_title_more"></span></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="content_unit_main">
-                    <#list article_11 as article>
-                        <div class="list"><div class="icon"><img src="${base}/resource/client/images/bg_item.png"></div><div class="title"><a href="${base}/articles/${article.id}.html"><@subTitle title="${article.title}" start=0 end=15>${title}</@subTitle></a></div><div class="time">${(article.createDate)?string("yyyy-MM-dd")}</div></div>
-					</#list>
-                    </div>
-                </div>
-
-                <div class="content_unit">
-                    <div class="content_unit_title">
-                        <div class="row">
-                            <div class="col-md-8">
-                                <span class="content_unit_title_left"><img src="${base}/resource/client/images/index_title_marriage.png"></span>
-                            </div>
-                            <div class="col-md-4">
-                                <a href="${base}/list/${more_12}.html"><span class="content_unit_title_more"></span></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="content_unit_main">
-                    <#list article_12 as article>
-                        <div class="list"><div class="icon"><img src="${base}/resource/client/images/bg_item.png"></div><div class="title"><a href="${base}/articles/${article.id}.html"><@subTitle title="${article.title}" start=0 end=15>${title}</@subTitle></a></div><div class="time">${(article.createDate)?string("yyyy-MM-dd")}</div></div>
-					</#list>
-                    </div>
-                </div>
-
-                <div class="content_unit">
-                    <div class="content_unit_title">
-                        <div class="row">
-                            <div class="col-md-8">
-                                <span class="content_unit_title_left"><img src="${base}/resource/client/images/index_title_contract.png"></span>
-                            </div>
-                            <div class="col-md-4">
-                                <a href="${base}/list/${more_14}.html"><span class="content_unit_title_more"></span></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="content_unit_main">
-                    <#list article_14 as article>
-                        <div class="list"><div class="icon"><img src="${base}/resource/client/images/bg_item.png"></div><div class="title"><a href="${base}/articles/${article.id}.html"><@subTitle title="${article.title}" start=0 end=15>${title}</@subTitle></a></div><div class="time">${(article.createDate)?string("yyyy-MM-dd")}</div></div>
-					</#list>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-    <!-- 正文内容三 -->
-    <div class="row content1">
-        <div class="container">
-            <div class="row row_extend">
-
-                <div class="content_unit">
-                    <div class="content_unit_title">
-                        <div class="row">
-                            <div class="col-md-8">
-                                <span class="content_unit_title_left"><img src="${base}/resource/client/images/index_title_debt.png"></span>
-                            </div>
-                            <div class="col-md-4">
-                                <a href="${base}/list/${more_15}.html"><span class="content_unit_title_more"></span></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="content_unit_main">
-                    <#list article_15 as article>
-                        <div class="list"><div class="icon"><img src="${base}/resource/client/images/bg_item.png"></div><div class="title"><a href="${base}/articles/${article.id}.html"><@subTitle title="${article.title}" start=0 end=15>${title}</@subTitle></a></div><div class="time">${(article.createDate)?string("yyyy-MM-dd")}</div></div>
-					</#list>
-                    </div>
-                </div>
-
-                <div class="content_unit">
-                    <div class="content_unit_title">
-                        <div class="row">
-                            <div class="col-md-8">
-                                <span class="content_unit_title_left"><img src="${base}/resource/client/images/index_title_labor.png"></span>
-                            </div>
-                            <div class="col-md-4">
-                                <a href="${base}/list/${more_16}.html"><span class="content_unit_title_more"></span></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="content_unit_main">
-                    <#list article_16 as article>
-                        <div class="list"><div class="icon"><img src="${base}/resource/client/images/bg_item.png"></div><div class="title"><a href="${base}/articles/${article.id}.html"><@subTitle title="${article.title}" start=0 end=15>${title}</@subTitle></a></div><div class="time">${(article.createDate)?string("yyyy-MM-dd")}</div></div>
-					</#list>
-                    </div>
-                </div>
-
-                <div class="content_unit">
-                    <div class="content_unit_title">
-                        <div class="row">
-                            <div class="col-md-8">
-                                <span class="content_unit_title_left"><img src="${base}/resource/client/images/index_title_traffic.png"></span>
-                            </div>
-                            <div class="col-md-4">
-                                <a href="${base}/list/${more_17}.html"><span class="content_unit_title_more"></span></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="content_unit_main">
-                    <#list article_17 as article>
-                        <div class="list"><div class="icon"><img src="${base}/resource/client/images/bg_item.png"></div><div class="title"><a href="${base}/articles/${article.id}.html"><@subTitle title="${article.title}" start=0 end=15>${title}</@subTitle></a></div><div class="time">${(article.createDate)?string("yyyy-MM-dd")}</div></div>
-					</#list>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-    <!-- 正文内容四 -->
-    <div class="row content2">
-        <div class="container">
-            <div class="row row_extend">
-
-                <div class="content_unit">
-                    <div class="content_unit_title">
-                        <div class="row">
-                            <div class="col-md-8">
-                                <span class="content_unit_title_left"><img src="${base}/resource/client/images/index_title_injury.png"></span>
-                            </div>
-                            <div class="col-md-4">
-                                <a href="${base}/list/${more_18}.html"><span class="content_unit_title_more"></span></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="content_unit_main">
-                    <#list article_18 as article>
-                        <div class="list"><div class="icon"><img src="${base}/resource/client/images/bg_item.png"></div><div class="title"><a href="${base}/articles/${article.id}.html"><@subTitle title="${article.title}" start=0 end=15>${title}</@subTitle></a></div><div class="time">${(article.createDate)?string("yyyy-MM-dd")}</div></div>
-					</#list>
-                    </div>
-                </div>
-
-                <div class="content_unit">
-                    <div class="content_unit_title">
-                        <div class="row">
-                            <div class="col-md-8">
-                                <span class="content_unit_title_left"><img src="${base}/resource/client/images/index_title_real.png"></span>
-                            </div>
-                            <div class="col-md-4">
-                                <a href="${base}/list/${more_19}.html"><span class="content_unit_title_more"></span></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="content_unit_main">
-                    <#list article_19 as article>
-                        <div class="list"><div class="icon"><img src="${base}/resource/client/images/bg_item.png"></div><div class="title"><a href="${base}/articles/${article.id}.html"><@subTitle title="${article.title}" start=0 end=15>${title}</@subTitle></a></div><div class="time">${(article.createDate)?string("yyyy-MM-dd")}</div></div>
-					</#list>
-                    </div>
-                </div>
-
-                <div class="content_unit">
-                    <div class="content_unit_title">
-                        <div class="row">
-                            <div class="col-md-8">
-                                <span class="content_unit_title_left"><img src="${base}/resource/client/images/index_title_defence.png"></span>
-                            </div>
-                            <div class="col-md-4">
-                                <a href="${base}/list/${more_21}.html"><span class="content_unit_title_more"></span></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="content_unit_main">
-                    <#list article_21 as article>
-                        <div class="list"><div class="icon"><img src="${base}/resource/client/images/bg_item.png"></div><div class="title"><a href="${base}/articles/${article.id}.html"><@subTitle title="${article.title}" start=0 end=15>${title}</@subTitle></a></div><div class="time">${(article.createDate)?string("yyyy-MM-dd")}</div></div>
-					</#list>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-    <!-- 联系及链接 -->
-    <div class="row" id="contact">
-        <div class="container">
+<div id="main">
+<div id="main_center">
+<div id="main_top_left"></div><div id="main_top_right"></div>
+<table id="__01" width="1020" height="1920" border="0" cellpadding="0" cellspacing="0" align="center">
+	<tr>
+		<td colspan="42">
+			<img src="${base}/resource/client/images/index_top.jpg" width="1019" height="150" alt=""></td>
+		<td>
+			<img src="${base}/resource/client/images/&#x5206;&#x9694;&#x7b26;.gif" width="1" height="150" alt=""></td>
+	</tr>
+	<tr>
+		<td colspan="42">
+        <div id="menu"><#include "/client/include/menu.ftl"></div>
+		</td>
+		<td>
+			<img src="${base}/resource/client/images/&#x5206;&#x9694;&#x7b26;.gif" width="1" height="41" alt=""></td>
+	</tr>
+	<tr>
+		<td colspan="6">
+			<img src="${base}/resource/client/images/index_03.gif" width="174" height="71" alt=""></td>
+		<td colspan="7">
+			<a href="${base}/article/9.html"><img src="${base}/resource/client/images/index_04.gif" width="125" height="71" alt="" border="0"></a></td>
+		<td colspan="5">
+			<a href="${base}/article/10.html"><img src="${base}/resource/client/images/index_05.gif" width="113" height="71" alt="" border="0"></a></td>
+		<td colspan="4">
+			<a href="${base}/article/11.html"><img src="${base}/resource/client/images/index_06.gif" width="109" height="71" alt="" border="0"></a></td>
+		<td colspan="3">
+			<a href="${base}/article/12.html"><img src="${base}/resource/client/images/index_07.gif" width="113" height="71" alt="" border="0"></a></td>
+		<td colspan="8">
+			<a href="${base}/article/13.html"><img src="${base}/resource/client/images/index_08.gif" width="115" height="71" alt="" border="0"></a></td>
+		<td colspan="2">
+			<a href="${base}/article/14.html"><img src="${base}/resource/client/images/index_09.gif" width="107" height="71" alt="" border="0"></a></td>
+		<td colspan="3">
+			<a href="${base}/article/15.html"><img src="${base}/resource/client/images/index_10.gif" width="123" height="71" alt="" border="0"></a></td>
+		<td colspan="4">
+			<img src="${base}/resource/client/images/index_11.gif" width="40" height="71" alt=""></td>
+		<td>
+			<img src="${base}/resource/client/images/&#x5206;&#x9694;&#x7b26;.gif" width="1" height="71" alt=""></td>
+	</tr>
+	<tr>
+		<td colspan="28">
+			<img src="${base}/resource/client/images/index_12.gif" width="667" height="10" alt=""></td>
+		<td colspan="14" rowspan="2">
+			<img src="${base}/resource/client/images/index_13.gif" width="352" height="51" alt=""></td>
+		<td>
+			<img src="${base}/resource/client/images/&#x5206;&#x9694;&#x7b26;.gif" width="1" height="10" alt=""></td>
+	</tr>
+	<tr>
+		<td rowspan="4">
+			<img src="${base}/resource/client/images/index_14.gif" width="10" height="231" alt=""></td>
+		<td colspan="26" rowspan="3">
+        <div id="banner"><img src="${base}/resource/client/images/banner1.jpg"></div>
+		</td>
+		<td rowspan="4">
+			<img src="${base}/resource/client/images/index_16.gif" width="10" height="231" alt=""></td>
+		<td>
+			<img src="${base}/resource/client/images/&#x5206;&#x9694;&#x7b26;.gif" width="1" height="41" alt=""></td>
+	</tr>
+	<tr>
+		<td colspan="6" rowspan="3">
+			<img src="${base}/resource/client/images/index_17.gif" width="128" height="190" alt=""></td>
+		<td colspan="7">
+        <div id="view">
         
-          <form action="" method="post">
-                <input type="text" name="phone" id="phone" placeholder="请输入手机号码">
-                <input type="text" name="email" id="email" placeholder="请输入电子邮件">
-                <textarea name="message" id="message" placeholder="请输入案件描述"></textarea>
-          </form>
-            
-            
-            
-            
-            
-            
-		    <div id="wrap" class="my-map">
-		        <div id="mapContainer"></div>
-		    </div>
-		    <script src="http://webapi.amap.com/maps?v=1.2&key=8325164e247e15eea68b59e89200988b"></script>
-		    <script>
-		    !function(){
-		        var infoWindow, map, level = 18,
-		            center = {lng: 120.687556, lat: 27.992611},
-		            features = [{type: "Marker", name: "温州胜诉律师网", desc: "地址：温州市市府路598号新益大厦A幢4层<br>网址：http://www.wenzhoulvshi.cn", color: "red", icon: "cir", offset: {x: -9, y: -31}, lnglat: {lng: 120.687491, lat: 27.992402}}];
-		 
-		        function loadFeatures(){
-		            for(var feature, data, i = 0, len = features.length, j, jl, path; i < len; i++){
-		                data = features[i];
-		                switch(data.type){
-		                    case "Marker":
-		                        feature = new AMap.Marker({ map: map, position: new AMap.LngLat(data.lnglat.lng, data.lnglat.lat),
-		                            zIndex: 3, extData: data, offset: new AMap.Pixel(data.offset.x, data.offset.y), title: data.name,
-		                            content: '<div class="icon icon-' + data.icon + ' icon-'+ data.icon +'-' + data.color +'"></div>' });
-		                        break;
-		                    case "Polyline":
-		                        for(j = 0, jl = data.lnglat.length, path = []; j < jl; j++){
-		                            path.push(new AMap.LngLat(data.lnglat[j].lng, data.lnglat[j].lat));
-		                        }
-		                        feature = new AMap.Polyline({ map: map, path: path, extData: data, zIndex: 2,
-		                            strokeWeight: data.strokeWeight, strokeColor: data.strokeColor, strokeOpacity: data.strokeOpacity });
-		                        break;
-		                    case "Polygon":
-		                        for(j = 0, jl = data.lnglat.length, path = []; j < jl; j++){
-		                            path.push(new AMap.LngLat(data.lnglat[j].lng, data.lnglat[j].lat));
-		                        }
-		                        feature = new AMap.Polygon({ map: map, path: path, extData: data, zIndex: 1,
-		                            strokeWeight: data.strokeWeight, strokeColor: data.strokeColor, strokeOpacity: data.strokeOpacity,
-		                            fillColor: data.fillColor, fillOpacity: data.fillOpacity });
-		                        break;
-		                    default: feature = null;
-		                }
-		                if(feature){ AMap.event.addListener(feature, "click", mapFeatureClick); }
-		            }
-		        }
-		 
-		        function mapFeatureClick(e){
-		            if(!infoWindow){ infoWindow = new AMap.InfoWindow({autoMove: true}); }
-		            var extData = e.target.getExtData();
-		            infoWindow.setContent("<h5>" + extData.name + "</h5><div>" + extData.desc + "</div>");
-		            infoWindow.open(map, e.lnglat);
-		        }
-		 
-		        map = new AMap.Map("mapContainer", {center: new AMap.LngLat(center.lng, center.lat), level: level});
-		         
-		        loadFeatures();
-		        map.plugin(["AMap.ToolBar", "AMap.OverView", "AMap.Scale"], function(){
-		            map.addControl(new AMap.ToolBar({ruler: false, direction: false, locate: false}));
-		            map.addControl(new AMap.OverView({isOpen: true}));
-		            map.addControl(new AMap.Scale);
-		        });
-		    }();
-		    </script>            
-            
-            
-            
-            
-            
-            
-            
-            
-            
+<#list article_17 as article>
+<div class="view_title"><@subTitle title=article.title start=0 end=12>${title}</@subTitle></div>
+<div class="view_content"><a href="${base}/articles/${article.id}.html">${article.content}</a></div>
+</#list>   
+        
+        
+        
         </div>
-    </div>
+		</td>
+		<td rowspan="3">
+			<img src="${base}/resource/client/images/index_19.gif" width="12" height="190" alt=""></td>
+		<td>
+			<img src="${base}/resource/client/images/&#x5206;&#x9694;&#x7b26;.gif" width="1" height="178" alt=""></td>
+	</tr>
+	<tr>
+		<td colspan="7" rowspan="2">
+			<img src="${base}/resource/client/images/index_20.gif" width="212" height="12" alt=""></td>
+		<td>
+			<img src="${base}/resource/client/images/&#x5206;&#x9694;&#x7b26;.gif" width="1" height="4" alt=""></td>
+	</tr>
+	<tr>
+		<td colspan="26">
+			<img src="${base}/resource/client/images/index_21.gif" width="647" height="8" alt=""></td>
+		<td>
+			<img src="${base}/resource/client/images/&#x5206;&#x9694;&#x7b26;.gif" width="1" height="8" alt=""></td>
+	</tr>
+	<tr>
+		<td colspan="9" rowspan="3">
+			<img src="${base}/resource/client/images/index_22.gif" width="220" height="43" alt=""></td>
+		<td colspan="19" rowspan="2">
+			<img src="${base}/resource/client/images/index_23.gif" alt="" width="447" height="39" border="0" usemap="#Map"></td>
+		<td colspan="14">
+			<img src="${base}/resource/client/images/index_24.gif" width="352" height="11" alt=""></td>
+		<td>
+			<img src="${base}/resource/client/images/&#x5206;&#x9694;&#x7b26;.gif" width="1" height="11" alt=""></td>
+	</tr>
+	<tr>
+		<td colspan="8">
+			<img src="${base}/resource/client/images/index_25.gif" width="280" height="28" alt=""></td>
+		<td colspan="5">
+			<a href="${base}/lists/${more_18}.html"><img src="${base}/resource/client/images/index_26.gif" width="60" height="28" alt="" border="0"></a></td>
+		<td>
+			<img src="${base}/resource/client/images/index_27.gif" width="12" height="28" alt=""></td>
+		<td>
+			<img src="${base}/resource/client/images/&#x5206;&#x9694;&#x7b26;.gif" width="1" height="28" alt=""></td>
+	</tr>
+	<tr>
+		<td rowspan="4">
+			<img src="${base}/resource/client/images/index_28.gif" width="7" height="218" alt=""></td>
+		<td colspan="17" rowspan="3">
+        
+<div id="hotnews">
+                
 
-    <!-- 落款部分 -->
-    <div class="row" id="footer">
-  		<#include "/client/include/footer.ftl" >
-    </div>
+<#list article_5 as article>
+		<div class="list"><a href="${base}/articles/${article.id}.html"><@subTitle title=article.title start=0 end=24>${title}</@subTitle></a><div class="end">${(article.createDate)?string("yyyy-MM-dd")}</div></div>
+</#list>		
+
+        
+        
 </div>
 
-<script src="${base}/resource/client/js/jquery.min.js"></script>
-<script src="${base}/resource/client/js/swiper-3.2.7.jquery.min.js"></script>
-<script>
-    var mySwiper = new Swiper ('.swiper-container', {
-        loop: true,
-        autoplay: 3000,
-        paginationClickable :true,
-        effect : 'fade',
-        fade: {
-            crossFade: false,
-        },
-        // 如果需要分页器
-        pagination: '.swiper-pagination',
-    })
+		</td>
+		<td rowspan="4">
+			<img src="${base}/resource/client/images/index_30.gif" width="10" height="218" alt=""></td>
+		<td colspan="2" rowspan="7">
+			<img src="${base}/resource/client/images/index_31.gif" width="6" height="249" alt=""></td>
+		<td colspan="10" rowspan="6">
+        <div id="team">
+<#list article_18 as article>
+<div class="unit_lawyer"><a href="${base}/shows/${article.id}.html"><img src="<@articleFirstThumbnail article=article>${imageUrl}</@articleFirstThumbnail>" border="0"></a><div class="name">${article.title}</div></div>		
+</#list>
+        </div>
+		</td>
+		<td colspan="2" rowspan="7">
+			<img src="${base}/resource/client/images/index_33.gif" width="18" height="249" alt=""></td>
+		<td>
+			<img src="${base}/resource/client/images/&#x5206;&#x9694;&#x7b26;.gif" width="1" height="4" alt=""></td>
+	</tr>
+	<tr>
+		<td colspan="3" rowspan="3">
+			<img src="${base}/resource/client/images/index_34.gif" width="16" height="214" alt=""></td>
+		<td colspan="4">
+        <div id="notice">
+<#list article_7 as article>
+		<div class="c_notice">${(article.createDate)?string("m.d")}&nbsp;<a href="${base}/articles/${article.id}.html">|&nbsp;<@subTitle title=article.title start=0 end=10>${title}</@subTitle></a></div>
+</#list>
+        </div>
+		</td>
+		<td colspan="2" rowspan="3">
+			<img src="${base}/resource/client/images/index_36.gif" width="14" height="214" alt=""></td>
+		<td>
+			<img src="${base}/resource/client/images/&#x5206;&#x9694;&#x7b26;.gif" width="1" height="197" alt=""></td>
+	</tr>
+	<tr>
+		<td colspan="4" rowspan="2">
+			<img src="${base}/resource/client/images/index_37.gif" width="190" height="17" alt=""></td>
+		<td>
+			<img src="${base}/resource/client/images/&#x5206;&#x9694;&#x7b26;.gif" width="1" height="6" alt=""></td>
+	</tr>
+	<tr>
+		<td colspan="17">
+			<img src="${base}/resource/client/images/index_38.gif" width="430" height="11" alt=""></td>
+		<td>
+			<img src="${base}/resource/client/images/&#x5206;&#x9694;&#x7b26;.gif" width="1" height="11" alt=""></td>
+	</tr>
+	<tr>
+		<td colspan="28">
+			<img src="${base}/resource/client/images/index_39.gif" width="667" height="13" alt=""></td>
+		<td>
+			<img src="${base}/resource/client/images/&#x5206;&#x9694;&#x7b26;.gif" width="1" height="13" alt=""></td>
+	</tr>
+	<tr>
+		<td colspan="5" rowspan="3">
+			<img src="${base}/resource/client/images/index_40.gif" width="167" height="23" alt=""></td>
+		<td colspan="2" rowspan="2">
+			<a href="${base}/list/${more_6}.html"><img src="${base}/resource/client/images/index_41.gif" width="39" height="18" alt="" border="0"></a></td>
+		<td colspan="17" rowspan="3">
+			<img src="${base}/resource/client/images/index_42.gif" width="408" height="23" alt=""></td>
+		<td colspan="3" rowspan="3">
+			<a href="${base}/list/${more_4}.html"><img src="${base}/resource/client/images/index_43.gif" width="43" height="23" alt="" border="0"></a></td>
+		<td rowspan="8">
+			<img src="${base}/resource/client/images/index_44.gif" width="10" height="187" alt=""></td>
+		<td>
+			<img src="${base}/resource/client/images/&#x5206;&#x9694;&#x7b26;.gif" width="1" height="2" alt=""></td>
+	</tr>
+	<tr>
+		<td colspan="10">
+			<img src="${base}/resource/client/images/index_45.gif" width="328" height="16" alt=""></td>
+		<td>
+			<img src="${base}/resource/client/images/&#x5206;&#x9694;&#x7b26;.gif" width="1" height="16" alt=""></td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<img src="${base}/resource/client/images/index_46.gif" width="39" height="5" alt=""></td>
+		<td colspan="14" rowspan="2">
+			<img src="${base}/resource/client/images/index_47.gif" width="352" height="11" alt=""></td>
+		<td>
+			<img src="${base}/resource/client/images/&#x5206;&#x9694;&#x7b26;.gif" width="1" height="5" alt=""></td>
+	</tr>
+	<tr>
+		<td rowspan="5">
+			<img src="${base}/resource/client/images/index_48.gif" width="10" height="164" alt=""></td>
+		<td colspan="7" rowspan="4">
+        <div id="faq">
+<#list article_6 as article>
+		<div class="c_notice">${(article.createDate)?string("m.d")}&nbsp;|&nbsp;<a href="${base}/articles/${article.id}.html"><@subTitle title=article.title start=0 end=10>${title}</@subTitle></a></div>
+</#list>        </div>
+		</td>
+		<td colspan="3" rowspan="5">
+			<img src="${base}/resource/client/images/index_50.gif" width="25" height="164" alt=""></td>
+		<td colspan="15" rowspan="3">
+        <div id="sample">
+        
+<#list article_4 as article>
+		<div class="list"><a href="${base}/articles/${article.id}.html"><@subTitle title=article.title start=0 end=24>${title}</@subTitle></a><div class="end">${(article.createDate)?string("yyyy-MM-dd")}</div></div>
+</#list> 
+        
+        
+        
+        </div>
+			</td>
+		<td rowspan="5">
+			<img src="${base}/resource/client/images/index_52.gif" width="8" height="164" alt=""></td>
+		<td>
+			<img src="${base}/resource/client/images/&#x5206;&#x9694;&#x7b26;.gif" width="1" height="6" alt=""></td>
+	</tr>
+	<tr>
+		<td colspan="9" rowspan="4">
+			<img src="${base}/resource/client/images/index_53.gif" width="292" height="158" alt=""></td>
+		<td colspan="3">
+			<a href="${base}/article/16.html"><img src="${base}/resource/client/images/index_54.gif" width="42" height="19" alt="" border="0"></a></td>
+		<td colspan="2" rowspan="4">
+			<img src="${base}/resource/client/images/index_55.gif" width="18" height="158" alt=""></td>
+		<td>
+			<img src="${base}/resource/client/images/&#x5206;&#x9694;&#x7b26;.gif" width="1" height="19" alt=""></td>
+	</tr>
+	<tr>
+		<td colspan="3" rowspan="3">
+			<img src="${base}/resource/client/images/index_56.gif" width="42" height="139" alt=""></td>
+		<td>
+			<img src="${base}/resource/client/images/&#x5206;&#x9694;&#x7b26;.gif" width="1" height="121" alt=""></td>
+	</tr>
+	<tr>
+		<td colspan="15" rowspan="2">
+			<img src="${base}/resource/client/images/index_57.gif" width="412" height="18" alt=""></td>
+		<td>
+			<img src="${base}/resource/client/images/&#x5206;&#x9694;&#x7b26;.gif" width="1" height="11" alt=""></td>
+	</tr>
+	<tr>
+		<td colspan="7">
+			<img src="${base}/resource/client/images/index_58.gif" width="202" height="7" alt=""></td>
+		<td>
+			<img src="${base}/resource/client/images/&#x5206;&#x9694;&#x7b26;.gif" width="1" height="7" alt=""></td>
+	</tr>
+	<tr>
+		<td colspan="42">
+			<img src="${base}/resource/client/images/index_59.gif" width="1019" height="127" alt=""></td>
+		<td>
+			<img src="${base}/resource/client/images/&#x5206;&#x9694;&#x7b26;.gif" width="1" height="127" alt=""></td>
+	</tr>
+	<tr>
+		<td colspan="19">
+			<img src="${base}/resource/client/images/index_60.gif" width="442" height="37" alt=""></td>
+		<td colspan="2">
+			<a href="${base}/lists/19.html"><img src="${base}/resource/client/images/index_61.gif" width="68" height="37" alt="" border=0></a></td>
+		<td colspan="15">
+			<img src="${base}/resource/client/images/index_62.gif" width="437" height="37" alt=""></td>
+		<td colspan="5">
+			<a href="${base}/lists/20.html"><img src="${base}/resource/client/images/index_63.gif" width="60" height="37" alt="" border="0"></a></td>
+		<td>
+			<img src="${base}/resource/client/images/index_64.gif" width="12" height="37" alt=""></td>
+		<td>
+			<img src="${base}/resource/client/images/&#x5206;&#x9694;&#x7b26;.gif" width="1" height="37" alt=""></td>
+	</tr>
+	<tr>
+		<td colspan="4" rowspan="2">
+			<img src="${base}/resource/client/images/index_65.gif" width="21" height="267" alt=""></td>
+		<td colspan="16">
+        
+<div class="expert">
+<div class="expert_plus">
+
+<#list article_19 as article>
+<div class="unit_expert">
+<a href="${base}/shows/${article.id}.html"><img src="<@articleFirstThumbnail article=article>${imageUrl}</@articleFirstThumbnail>" border="0"></a>
+<div class="name">${article.title}</div>
+<div class="content"><a href="${base}/shows/${article.id}.html">${article.content}</a></div>
+</div>		
+
+</#list>       
+   
+</div>
+</div>
+			</td>
+		<td rowspan="2">
+			<img src="${base}/resource/client/images/index_67.gif" width="21" height="267" alt=""></td>
+		<td colspan="2" rowspan="2">
+			<img src="${base}/resource/client/images/index_68.gif" width="18" height="267" alt=""></td>
+		<td colspan="16">
+        <div class="expert">
+        
+<div class="expert_plus">
+
+<#list article_20 as article>
+<div class="unit_expert">
+<a href="${base}/shows/${article.id}.html"><img src="<@articleFirstThumbnail article=article>${imageUrl}</@articleFirstThumbnail>" border="0"></a>
+<div class="name">${article.title}</div>
+<div class="content"><a href="${base}/shows/${article.id}.html">${article.content}</a></div>
+</div>		
+
+</#list>      
+   
+</div>       
+        
+        
+        
+        
+        </div>
+			</td>
+		<td colspan="3" rowspan="2">
+			<img src="${base}/resource/client/images/index_70.gif" width="23" height="267" alt=""></td>
+		<td>
+			<img src="${base}/resource/client/images/&#x5206;&#x9694;&#x7b26;.gif" width="1" height="242" alt=""></td>
+	</tr>
+	<tr>
+		<td colspan="16">
+			<img src="${base}/resource/client/images/index_71.gif" width="468" height="25" alt=""></td>
+		<td colspan="16">
+			<img src="${base}/resource/client/images/index_72.gif" width="468" height="25" alt=""></td>
+		<td>
+			<img src="${base}/resource/client/images/&#x5206;&#x9694;&#x7b26;.gif" width="1" height="25" alt=""></td>
+	</tr>
+	<tr>
+		<td colspan="12">
+			<img src="${base}/resource/client/images/index_73.gif" width="271" height="36" alt=""></td>
+		<td colspan="2">
+			<a href="${base}/list/1.html"><img src="${base}/resource/client/images/index_74.gif" width="54" height="36" alt="" border="0"></a></td>
+		<td colspan="2">
+			<img src="${base}/resource/client/images/index_75.gif" width="16" height="36" alt=""></td>
+		<td colspan="8">
+			<img src="${base}/resource/client/images/index_76.gif" width="273" height="36" alt=""></td>
+		<td colspan="4">
+			<a href="${base}/list/2.html"><img src="${base}/resource/client/images/index_77.gif" width="53" height="36" alt="" border="0"></a></td>
+		<td colspan="3">
+			<img src="${base}/resource/client/images/index_78.gif" width="11" height="36" alt=""></td>
+		<td colspan="5">
+			<img src="${base}/resource/client/images/index_79.gif" width="269" height="36" alt=""></td>
+		<td colspan="5">
+			<a href="${base}/list/3.html"><img src="${base}/resource/client/images/index_80.gif" width="60" height="36" alt="" border="0"></a></td>
+		<td>
+			<img src="${base}/resource/client/images/index_81.gif" width="12" height="36" alt=""></td>
+		<td>
+			<img src="${base}/resource/client/images/&#x5206;&#x9694;&#x7b26;.gif" width="1" height="36" alt=""></td>
+	</tr>
+	<tr>
+		<td colspan="2" rowspan="2">
+			<img src="${base}/resource/client/images/index_82.gif" width="13" height="218" alt=""></td>
+		<td colspan="13">
+        <div id="defend">
+        
+<#list article_1 as article>
+<div class="list"><a href="${base}/articles/${article.id}.html"><@subTitle title=article.title start=0 end=17>${title}</@subTitle></a><div class="end">${(article.createDate)?string("yyyy-MM-dd")}</div></div>
+</#list>
+        
+        </div>
+		</td>
+		<td rowspan="2">
+			<img src="${base}/resource/client/images/index_84.gif" width="8" height="218" alt=""></td>
+		<td rowspan="2">
+			<img src="${base}/resource/client/images/index_85.gif" width="7" height="218" alt=""></td>
+		<td colspan="12">
+        <div id="guilt">
+<#list article_2 as article>
+<div class="list"><a href="${base}/articles/${article.id}.html"><@subTitle title=article.title start=0 end=17>${title}</@subTitle></a><div class="end">${(article.createDate)?string("yyyy-MM-dd")}</div></div>
+</#list>       
+        
+        
+        </div>
+		</td>
+		<td colspan="2" rowspan="2">
+			<img src="${base}/resource/client/images/index_87.gif" width="7" height="218" alt=""></td>
+		<td rowspan="2">
+			<img src="${base}/resource/client/images/index_88.gif" width="8" height="218" alt=""></td>
+		<td colspan="9">
+        <div id="rules">
+<#list article_3 as article>
+<div class="list"><a href="${base}/articles/${article.id}.html"><@subTitle title=article.title start=0 end=17>${title}</@subTitle></a><div class="end">${(article.createDate)?string("yyyy-MM-dd")}</div></div>
+</#list>        
+        
+        
+        </div>
+		</td>
+		<td rowspan="2">
+			<img src="${base}/resource/client/images/index_90.gif" width="12" height="218" alt=""></td>
+		<td>
+			<img src="${base}/resource/client/images/&#x5206;&#x9694;&#x7b26;.gif" width="1" height="209" alt=""></td>
+	</tr>
+	<tr>
+		<td colspan="13">
+			<img src="${base}/resource/client/images/index_91.gif" width="320" height="9" alt=""></td>
+		<td colspan="12">
+			<img src="${base}/resource/client/images/index_92.gif" width="323" height="9" alt=""></td>
+		<td colspan="9">
+			<img src="${base}/resource/client/images/index_93.gif" width="321" height="9" alt=""></td>
+		<td>
+			<img src="${base}/resource/client/images/&#x5206;&#x9694;&#x7b26;.gif" width="1" height="9" alt=""></td>
+	</tr>
+	<tr>
+		<td colspan="42">
+			<img src="${base}/resource/client/images/index_94.gif" width="1019" height="7" alt=""></td>
+		<td>
+			<img src="${base}/resource/client/images/&#x5206;&#x9694;&#x7b26;.gif" width="1" height="7" alt=""></td>
+	</tr>
+	<tr>
+		<td colspan="37" rowspan="2">
+			<img src="${base}/resource/client/images/index_95.gif" width="959" height="29" alt=""></td>
+		<td colspan="3">
+			<img src="${base}/resource/client/images/index_96.gif" width="42" height="24" alt=""></td>
+		<td colspan="2" rowspan="2">
+			<img src="${base}/resource/client/images/index_97.gif" width="18" height="29" alt=""></td>
+		<td>
+			<img src="${base}/resource/client/images/&#x5206;&#x9694;&#x7b26;.gif" width="1" height="24" alt=""></td>
+	</tr>
+	<tr>
+		<td colspan="3">
+			<img src="${base}/resource/client/images/index_98.gif" width="42" height="5" alt=""></td>
+		<td>
+			<img src="${base}/resource/client/images/&#x5206;&#x9694;&#x7b26;.gif" width="1" height="5" alt=""></td>
+	</tr>
+	<tr>
+		<td colspan="2" rowspan="2">
+			<img src="${base}/resource/client/images/index_99.gif" width="13" height="120" alt=""></td>
+		<td colspan="39">
+        <div id="links">
+<#list links as link>
+<div class="ulink"><a href="${link.url}" target="_blank">${link.name}</a></div>
+</#list>
+        
+        
+        </div>
+		</td>
+		<td rowspan="2">
+			<img src="${base}/resource/client/images/index_101.gif" width="12" height="120" alt=""></td>
+		<td>
+			<img src="${base}/resource/client/images/&#x5206;&#x9694;&#x7b26;.gif" width="1" height="110" alt=""></td>
+	</tr>
+	<tr>
+		<td colspan="39">
+			<img src="${base}/resource/client/images/index_102.gif" width="994" height="10" alt=""></td>
+		<td>
+			<img src="${base}/resource/client/images/&#x5206;&#x9694;&#x7b26;.gif" width="1" height="10" alt=""></td>
+	</tr>
+	<tr>
+		<td colspan="42">
+        <div id="foot"><div id="foot_inner"></div></div>
+			</td>
+		<td>
+			<img src="${base}/resource/client/images/&#x5206;&#x9694;&#x7b26;.gif" width="1" height="37" alt=""></td>
+	</tr>
+	<tr>
+		<td colspan="42">
+        <div id="bottom">
+        <#include "/client/include/footer.ftl">
+        </div>
+		</td>
+		<td>
+			<img src="${base}/resource/client/images/&#x5206;&#x9694;&#x7b26;.gif" width="1" height="81" alt=""></td>
+	</tr>
+	<tr>
+		<td>
+			<img src="${base}/resource/client/images/&#x5206;&#x9694;&#x7b26;.gif" width="10" height="1" alt=""></td>
+		<td>
+			<img src="${base}/resource/client/images/&#x5206;&#x9694;&#x7b26;.gif" width="3" height="1" alt=""></td>
+		<td>
+			<img src="${base}/resource/client/images/&#x5206;&#x9694;&#x7b26;.gif" width="3" height="1" alt=""></td>
+		<td>
+			<img src="${base}/resource/client/images/&#x5206;&#x9694;&#x7b26;.gif" width="5" height="1" alt=""></td>
+		<td>
+			<img src="${base}/resource/client/images/&#x5206;&#x9694;&#x7b26;.gif" width="146" height="1" alt=""></td>
+		<td>
+			<img src="${base}/resource/client/images/&#x5206;&#x9694;&#x7b26;.gif" width="7" height="1" alt=""></td>
+		<td>
+			<img src="${base}/resource/client/images/&#x5206;&#x9694;&#x7b26;.gif" width="32" height="1" alt=""></td>
+		<td>
+			<img src="${base}/resource/client/images/&#x5206;&#x9694;&#x7b26;.gif" width="6" height="1" alt=""></td>
+		<td>
+			<img src="${base}/resource/client/images/&#x5206;&#x9694;&#x7b26;.gif" width="8" height="1" alt=""></td>
+		<td>
+			<img src="${base}/resource/client/images/&#x5206;&#x9694;&#x7b26;.gif" width="7" height="1" alt=""></td>
+		<td>
+			<img src="${base}/resource/client/images/&#x5206;&#x9694;&#x7b26;.gif" width="10" height="1" alt=""></td>
+		<td>
+			<img src="${base}/resource/client/images/&#x5206;&#x9694;&#x7b26;.gif" width="34" height="1" alt=""></td>
+		<td>
+			<img src="${base}/resource/client/images/&#x5206;&#x9694;&#x7b26;.gif" width="28" height="1" alt=""></td>
+		<td>
+			<img src="${base}/resource/client/images/&#x5206;&#x9694;&#x7b26;.gif" width="26" height="1" alt=""></td>
+		<td>
+			<img src="${base}/resource/client/images/&#x5206;&#x9694;&#x7b26;.gif" width="8" height="1" alt=""></td>
+		<td>
+			<img src="${base}/resource/client/images/&#x5206;&#x9694;&#x7b26;.gif" width="8" height="1" alt=""></td>
+		<td>
+			<img src="${base}/resource/client/images/&#x5206;&#x9694;&#x7b26;.gif" width="7" height="1" alt=""></td>
+		<td>
+			<img src="${base}/resource/client/images/&#x5206;&#x9694;&#x7b26;.gif" width="64" height="1" alt=""></td>
+		<td>
+			<img src="${base}/resource/client/images/&#x5206;&#x9694;&#x7b26;.gif" width="30" height="1" alt=""></td>
+		<td>
+			<img src="${base}/resource/client/images/&#x5206;&#x9694;&#x7b26;.gif" width="47" height="1" alt=""></td>
+		<td>
+			<img src="${base}/resource/client/images/&#x5206;&#x9694;&#x7b26;.gif" width="21" height="1" alt=""></td>
+		<td>
+			<img src="${base}/resource/client/images/&#x5206;&#x9694;&#x7b26;.gif" width="11" height="1" alt=""></td>
+		<td>
+			<img src="${base}/resource/client/images/&#x5206;&#x9694;&#x7b26;.gif" width="7" height="1" alt=""></td>
+		<td>
+			<img src="${base}/resource/client/images/&#x5206;&#x9694;&#x7b26;.gif" width="86" height="1" alt=""></td>
+		<td>
+			<img src="${base}/resource/client/images/&#x5206;&#x9694;&#x7b26;.gif" width="20" height="1" alt=""></td>
+		<td>
+			<img src="${base}/resource/client/images/&#x5206;&#x9694;&#x7b26;.gif" width="15" height="1" alt=""></td>
+		<td>
+			<img src="${base}/resource/client/images/&#x5206;&#x9694;&#x7b26;.gif" width="8" height="1" alt=""></td>
+		<td>
+			<img src="${base}/resource/client/images/&#x5206;&#x9694;&#x7b26;.gif" width="10" height="1" alt=""></td>
+		<td>
+			<img src="${base}/resource/client/images/&#x5206;&#x9694;&#x7b26;.gif" width="4" height="1" alt=""></td>
+		<td>
+			<img src="${base}/resource/client/images/&#x5206;&#x9694;&#x7b26;.gif" width="2" height="1" alt=""></td>
+		<td>
+			<img src="${base}/resource/client/images/&#x5206;&#x9694;&#x7b26;.gif" width="5" height="1" alt=""></td>
+		<td>
+			<img src="${base}/resource/client/images/&#x5206;&#x9694;&#x7b26;.gif" width="8" height="1" alt=""></td>
+		<td>
+			<img src="${base}/resource/client/images/&#x5206;&#x9694;&#x7b26;.gif" width="63" height="1" alt=""></td>
+		<td>
+			<img src="${base}/resource/client/images/&#x5206;&#x9694;&#x7b26;.gif" width="46" height="1" alt=""></td>
+		<td>
+			<img src="${base}/resource/client/images/&#x5206;&#x9694;&#x7b26;.gif" width="61" height="1" alt=""></td>
+		<td>
+			<img src="${base}/resource/client/images/&#x5206;&#x9694;&#x7b26;.gif" width="91" height="1" alt=""></td>
+		<td>
+			<img src="${base}/resource/client/images/&#x5206;&#x9694;&#x7b26;.gif" width="12" height="1" alt=""></td>
+		<td>
+			<img src="${base}/resource/client/images/&#x5206;&#x9694;&#x7b26;.gif" width="20" height="1" alt=""></td>
+		<td>
+			<img src="${base}/resource/client/images/&#x5206;&#x9694;&#x7b26;.gif" width="17" height="1" alt=""></td>
+		<td>
+			<img src="${base}/resource/client/images/&#x5206;&#x9694;&#x7b26;.gif" width="5" height="1" alt=""></td>
+		<td>
+			<img src="${base}/resource/client/images/&#x5206;&#x9694;&#x7b26;.gif" width="6" height="1" alt=""></td>
+		<td>
+			<img src="${base}/resource/client/images/&#x5206;&#x9694;&#x7b26;.gif" width="12" height="1" alt=""></td>
+		<td></td>
+	</tr>
+</table>
+</div>
+</div>
 
 
-    $(document).ready(function(){
-        // 律师团队
-        $('.group_member').hover(
-            function(){
-                $(this).find('.photo').find('img').animate({
-                    'width':'186px',
-                    'height':'186px',
-                    'margin-top':'14px',
-                    'margin-left':'14px'
-                },500);
-            },
-            function(){
-                $(this).find('.photo').find('img').animate({
-                    'width':'214px',
-                    'height':'214px',
-                    'margin-top':'0px',
-                    'margin-left':'0px'
-                },500);
-            }
-        );
-    });
-</script>
+<map name="Map">
+  <area shape="rect" coords="386,11,427,30" href="${base}/list/${more_5}.html" target="_blank">
+</map>
 </body>
 </html>

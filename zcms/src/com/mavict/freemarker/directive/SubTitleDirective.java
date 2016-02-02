@@ -1,14 +1,11 @@
 package com.mavict.freemarker.directive;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.stereotype.Component;
 
-import com.mavict.article.Article;
-import com.mavict.article.image.ArticleImage;
 import com.mavict.utils.FreemarkerUtils;
 
 import freemarker.core.Environment;
