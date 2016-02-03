@@ -102,5 +102,6 @@ ${articleCategoryName}
 
 </div>
 </div>
+<script src="${base}/resource/admin/js/pagination.js"></script>
 </body>
 </html>

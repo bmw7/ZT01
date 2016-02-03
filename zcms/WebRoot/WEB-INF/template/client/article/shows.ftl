@@ -1,64 +1,95 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>${article.title} - 温州胜诉律师网</title>
-    <link rel="stylesheet" href="${base}/resource/client/css/bootstrap.min.css">
-    <link rel="stylesheet" href="${base}/resource/client/css/inner.css">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="${base}/resource/client/css/page_inner.css" type="text/css" />
+<script language="javascript" src="${base}/resource/client/js/jquery.js" ></script>
+<script language="javascript" src="${base}/resource/client/js/dyn.js" ></script>
+<title>温州刑事辩护律师网</title>
 </head>
+
 <body>
-<div class="container-fluid">
-    
-    <#include "/client/include/header.ftl" >
 
-    <!--大图banner-->
-    <div class="row" id="banner">
+<div id="all">
+<div id="main">
+<div id="main_top_left"></div><div id="main_top_right"></div>
+<div id="main_top"></div>
 
-    </div>
+<div id="main_menu"><#include "/client/include/menu.ftl"></div>
 
-    <!-- 正文内容 -->
-    <div class="row content">
-        <div id="right"></div>
-        <div id="bottom"></div>
-        <div class="container">
-            <div class="col-md-4 scrollspy" >
-                <div id="nav" data-spy="affix"></div>
-            </div>
-            <div class="col-md-8 main">
-                <div class="detail_title">${article.title}</div>
-				<@articleImage article = article>	
-					<#list imageUrls as imageUrl>
-						<div style="text-align:center;margin-top:20px"><img src="${base}/${imageUrl}"></div>
-					</#list>
-				</@articleImage>
-                <div class="detail">${article.content}</div>
+<div id="main_busi"><#include "/client/include/busi.ftl"></div>
 
-                <div id="share">
-                    <div class="bshare-custom icon-medium"><a title="分享到" class="bshare-more" id="bshare-shareto" href="http://www.bShare.cn/">分享到</a><a title="分享到QQ空间" class="bshare-qzone"></a><a title="分享到新浪微博" class="bshare-sinaminiblog"></a><a title="分享到人人网" class="bshare-renren"></a><a title="分享到腾讯微博" class="bshare-qqmb"></a><a title="分享到网易微博" class="bshare-neteasemb"></a><a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a><span class="BSHARE_COUNT bshare-share-count">0</span></div><script src="http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=&amp;pophcol=2&amp;lang=zh" type="text/javascript" charset="utf-8"></script><script src="http://static.bshare.cn/b/bshareC0.js" type="text/javascript" charset="utf-8"></script>
-                </div>
+<div id="main_center">
 
-            </div>
+<div id="main_left">
 
 
-        </div>
-    </div>
 
 
-    <!-- 落款部分 -->
-    <div class="row" id="footer">
-         <#include "/client/include/footer.ftl" >
-    </div>
+<div id="main_left_view">
+<div id="view_gap"><a href="">更多>></a></div>
+<#list article_17 as article>
+<div class="view">
+<div class="view_title"><@subTitle title=article.title start=0 end=12>${title}</@subTitle></div>
+<div class="view_content"><a href="${base}/articles/${article.id}.html">${article.content}</a></div>
+</div>
+</#list>
 </div>
 
-<script src="${base}/resource/client/js/jquery.min.js"></script>
-<script src="${base}/resource/client/js/bootstrap.min.js"></script>
-<script>
-    $('#nav').affix({
-        offset: {
-            top: $('#nav').offset().top
-        }
-    });
-</script>
+
+
+<div id="main_left_list">
+<div id="main_left_list_gap"><a href="">更多>></a></div>
+<#list article_20 as article>
+<div class="unit_expert">
+<a href="${base}/shows/${article.id}.html"><img src="<@articleFirstThumbnail article=article>${imageUrl}</@articleFirstThumbnail>" border="0"></a>
+<div class="name">${article.title}</div>
+<div class="content"><a href="${base}/shows/${article.id}.html">${article.content}</a></div>
+</div>		
+</#list>
+</div>
+
+
+
+
+
+
+
+
+</div>
+
+
+<div id="main_right">
+<div id="main_right_title">
+
+</div>
+
+
+<div id="title">${article.title}</div>
+
+<@articleImage article=article>
+${imageUrls}
+</@articleImage>
+
+<div id="text">
+${article.content}
+</div>
+
+</div>
+</div>
+
+<div id="main_link">
+
+<div id="main_link_gap"></div>
+<#list links as link>
+<div class="ulink"><a href="${link.url}">${link.name}</a></div>
+</#list>
+
+</div>
+<div id="main_line"></div>
+<div id="main_foot"><#include "/client/include/footer.ftl"></div>
+
+</div>
+</div>
 </body>
 </html>

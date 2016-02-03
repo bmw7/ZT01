@@ -137,7 +137,7 @@ public class ArticleController {
 	/* 有图片类文章列表 */
 	@RequestMapping("/lists/{categoryId}.html")
 	public String lists(@PathVariable Integer categoryId,ModelMap model,PageInfo pageInfo){
-		pageInfo.setPageSize(12);
+		pageInfo.setPageSize(6);
 		model.addAttribute("pagedContent", articleService.getPagedContentByCategoryIdService(categoryId, pageInfo));
 		model.addAttribute("pageUrl", "/lists/"+categoryId+".html");
 		// 导航菜单
