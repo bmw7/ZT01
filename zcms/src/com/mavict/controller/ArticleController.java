@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.mavict.PageInfo;
+import com.mavict.PagedContent;
 import com.mavict.article.Article;
 import com.mavict.article.ArticleService;
 import com.mavict.article.category.ArticleCategoryService;
@@ -28,6 +29,7 @@ import com.mavict.article.image.ArticleImage;
 import com.mavict.article.image.ArticleImageService;
 import com.mavict.friendlinks.FriendlinksService;
 import com.mavict.setting.navigation.NavigationService;
+import com.mavict.utils.StripTagsUtils;
 
 /**
  * Controller - 文章客户端
@@ -61,7 +63,7 @@ public class ArticleController {
 	public String index(ModelMap model){
 		// 多文章块列表
 		Integer[][] groups = new Integer[][]{{7,7},{5,8},{17,3},{18,8},{6,6},{4,6},{19,4},{20,4},{1,8},{2,8},{3,8}};
-		addAttributes("article", "more", groups, model);
+		addStripAttributes("article", "more", groups, model);
 		// 导航菜单
 		model.addAttribute("navigations", navigationService.getNavService());
 		// 友情链接
@@ -99,7 +101,7 @@ public class ArticleController {
 		
 		// 多文章块列表
 		Integer[][] groups = new Integer[][]{{17,3},{20,4}};
-		addAttributes("article", "more", groups, model);
+		addStripAttributes("article", "more", groups, model);
 		
 		return "/client/article/articles";
 	}
@@ -113,7 +115,7 @@ public class ArticleController {
 		model.addAttribute("links", friendlinksService.getAllService());
 		// 多文章块列表
 		Integer[][] groups = new Integer[][]{{17,3},{20,4}};
-		addAttributes("article", "more", groups, model);
+		addStripAttributes("article", "more", groups, model);
 		
 		return "/client/article/shows";
 	}
@@ -133,7 +135,7 @@ public class ArticleController {
 		
 		// 多文章块列表
 		Integer[][] groups = new Integer[][]{{17,3},{20,4}};
-		addAttributes("article", "more", groups, model);
+		addStripAttributes("article", "more", groups, model);
 
 		return "/client/article/list";
 	}
@@ -142,7 +144,15 @@ public class ArticleController {
 	@RequestMapping("/lists/{categoryId}.html")
 	public String lists(@PathVariable Integer categoryId,ModelMap model,PageInfo pageInfo){
 		pageInfo.setPageSize(6);
-		model.addAttribute("pagedContent", articleService.getPagedContentByCategoryIdService(categoryId, pageInfo));
+		PagedContent<Article> pagedContent = articleService.getPagedContentByCategoryIdService(categoryId, pageInfo);
+		List<Article> articles = new ArrayList<Article>();
+		for (Article article : pagedContent.getContent()) {
+			String content = StripTagsUtils.parse(article.getContent());
+			article.setContent(content);
+			articles.add(article);
+		}
+		pagedContent.setContent(articles);
+		model.addAttribute("pagedContent", pagedContent);
 		model.addAttribute("pageUrl", "/lists/"+categoryId+".html");
 		// 导航菜单
 		model.addAttribute("navigations", navigationService.getNavService());
@@ -152,7 +162,7 @@ public class ArticleController {
 		model.addAttribute("articleCategoryName", articleCategoryService.getService(categoryId).getName());
 		// 多文章块列表
 		Integer[][] groups = new Integer[][]{{17,3},{20,4}};
-		addAttributes("article", "more", groups, model);
+		addStripAttributes("article", "more", groups, model);
 		return "/client/article/lists";
 	}
 	
@@ -257,6 +267,20 @@ public class ArticleController {
 	private void addAttributes(String entity,String more,Integer[][] categoryIdAndNums,ModelMap model){
 		for (Integer[] group : categoryIdAndNums) {
 			model.addAttribute(entity+"_"+String.valueOf(group[0]), articleService.getNumListService(group[0], Integer.valueOf(group[1].toString())));
+			model.addAttribute(more+"_"+String.valueOf(group[0]), group[0]);
+		}
+	}
+	
+	private void addStripAttributes(String entity,String more,Integer[][] categoryIdAndNums,ModelMap model){
+		for (Integer[] group : categoryIdAndNums) {
+			List<Article> articles = articleService.getNumListService(group[0], Integer.valueOf(group[1].toString()));
+			List<Article> result = new ArrayList<Article>();
+			for (Article article : articles) {
+				String content = StripTagsUtils.parse(article.getContent());
+				article.setContent(content);
+				result.add(article);
+			}
+			model.addAttribute(entity+"_"+String.valueOf(group[0]), result);
 			model.addAttribute(more+"_"+String.valueOf(group[0]), group[0]);
 		}
 	}

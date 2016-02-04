@@ -16,7 +16,7 @@ public class PagedContent<T> implements Serializable {
 
 	private static final long serialVersionUID = 8500274874425778254L;
 	
-	private final List<T> content = new ArrayList<T>();   /** 内容 */
+	private List<T> content = new ArrayList<T>();         /** 内容 */
 	private final long total;                             /** 总记录数 */
 	private final PageInfo pageInfo;                      /** 分页信息 */
 	
@@ -36,6 +36,11 @@ public class PagedContent<T> implements Serializable {
 	/** 获取内容  */
 	public List<T> getContent() {
 		return content;
+	}
+	
+	/** 设置内容  */
+	public void setContent(List<T> content) {
+		this.content = content;
 	}
 	
 	/** 获取总记录数  */

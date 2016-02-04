@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" href="${base}/resource/client/css/page_inner.css" type="text/css" />
-<script language="javascript" src="${base}/resource/client/js/jquery.js" ></script>
+<script language="javascript" src="${base}/resource/client/js/jquery.min.js" ></script>
 <script language="javascript" src="${base}/resource/client/js/dyn.js" ></script>
 <title>温州刑事辩护律师网</title>
 </head>
