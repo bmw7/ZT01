@@ -111,6 +111,10 @@ public class ArticleController {
 		model.addAttribute("navigations", navigationService.getNavService());
 		// 友情链接
 		model.addAttribute("links", friendlinksService.getAllService());
+		// 多文章块列表
+		Integer[][] groups = new Integer[][]{{17,3},{20,4}};
+		addAttributes("article", "more", groups, model);
+		
 		return "/client/article/shows";
 	}
 	
@@ -146,6 +150,9 @@ public class ArticleController {
 		model.addAttribute("links", friendlinksService.getAllService());
 		// 目录名称
 		model.addAttribute("articleCategoryName", articleCategoryService.getService(categoryId).getName());
+		// 多文章块列表
+		Integer[][] groups = new Integer[][]{{17,3},{20,4}};
+		addAttributes("article", "more", groups, model);
 		return "/client/article/lists";
 	}
 	

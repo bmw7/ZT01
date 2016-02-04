@@ -67,8 +67,10 @@
 
 <div id="title">${article.title}</div>
 
-<@articleImage article=article>
-${imageUrls}
+<@articleImage article = article>	
+	<#list imageUrls as imageUrl>
+		<div style="text-align:center;margin-top:20px"><img src="${base}/${imageUrl}"></div>
+	</#list>
 </@articleImage>
 
 <div id="text">

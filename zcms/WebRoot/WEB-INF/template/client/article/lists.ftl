@@ -40,7 +40,7 @@
 <div id="main_left_list_gap"><a href="">更多>></a></div>
 <#list article_20 as article>
 <div class="unit_expert">
-<a href="${base}/shows/${article.id}.html"><img src="<@articleFirstThumbnail article=article>${imageUrl}</@articleFirstThumbnail>" border="0"></a>
+<a href="${base}/shows/${article.id}.html"><img src="${base}/<@articleFirstThumbnail article=article>${imageUrl}</@articleFirstThumbnail>" border="0"></a>
 <div class="name">${article.title}</div>
 <div class="content"><a href="${base}/shows/${article.id}.html">${article.content}</a></div>
 </div>		
@@ -55,7 +55,7 @@
 
 <#list pagedContent.content as article>
 <div class="unit_expert_inner">
-<a href="${base}/shows/${article.id}.html"><img src="<@articleFirstThumbnail article=article>${imageUrl}</@articleFirstThumbnail>" border="0"></a>
+<a href="${base}/shows/${article.id}.html"><img src="${base}/<@articleFirstThumbnail article=article>${imageUrl}</@articleFirstThumbnail>" border="0"></a>
 <div class="name"></div>
 <div class="content"><a href="${base}/shows/${article.id}.html">${article.content}</a></div>
 </div>		
