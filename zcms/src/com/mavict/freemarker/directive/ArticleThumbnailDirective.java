@@ -40,9 +40,8 @@ public class ArticleThumbnailDirective extends BaseDirective implements ServletC
 	public void execute(Environment env, Map params, TemplateModel[] loopVars, TemplateDirectiveBody body) throws TemplateException, IOException {
 		
 		ArticleImage articleImage = FreemarkerUtils.getParameter("image", ArticleImage.class, params);
-		String separator = (File.separator == "/") ? "/" : "\\\\";
 		String imageUrl = articleImage.getUrl();
-		String[] path = imageUrl.split(separator);
+		String[] path = (imageUrl.split("/").length > 1) ? imageUrl.split("/") : imageUrl.split("\\\\") ;
 		String thumbImageName = "thumbnail_"+path[path.length - 1]; 
 		String url = path[path.length - 4]+ "/" + path[path.length - 3] + "/" + path[path.length - 2] + "/" + thumbImageName;
 		
