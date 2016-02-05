@@ -24,12 +24,40 @@ public interface BaseDao<T,ID extends Serializable> {
 	/** 改 */
 	void update(T entity);
 	
-	/** 查 */
-	T get(ID id);      // 获取实体
-	T get(String columnName,Object query);
-	T load(ID id);     // 获取代理对象 懒加载
+	
+	/*----------------- 查 ----------------*/
+	
+	T get(ID id);      	
+	T get(String column,Object value);
+	
 	List<T> getEntities(String columnName,Object queryValue);
-	List<T> getAll(); // 获取所有实体
+	
+	/**
+	 * 获取所有实体
+	 * 
+	 * 说明：未定义排序，默认排序
+	 * 
+	 * @return 实体List
+	 * */
+	List<T> get(); 
+	
+	
+	/**
+	 * 获取所有 满足条件语句的 实体集合
+	 * 
+	 * @param start 开始数字
+	 * @param count 数目
+	 * @param orderColumn 排序字段
+	 * @sequence 正序或逆序 asc 或  desc
+	 * @fiters 检索条件
+	 * 
+	 * @return 实体List集合
+	 * */
+	List<T> get(Integer start, Integer count, String orderColumn, String sequence, Object[]... filters); 
+	
+	
+	
+	
 	
 	/** 统计 */
 	Long count();

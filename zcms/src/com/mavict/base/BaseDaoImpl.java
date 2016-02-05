@@ -67,10 +67,6 @@ public class BaseDaoImpl<T,ID extends Serializable> implements BaseDao<T, ID>{
 		return (T) getSession().get(entityClass, id);
 	}
 	
-	@Override
-	public T load(ID id) {
-		return  (T) getSession().load(entityClass, id);
-	}
 	
 	
 	@Override
@@ -92,7 +88,7 @@ public class BaseDaoImpl<T,ID extends Serializable> implements BaseDao<T, ID>{
 	}
 	
 	@Override
-	public List<T> getAll() {
+	public List<T> get() {
 		String hql = "from "+entityClass.getSimpleName();
 		return getSession().createQuery(hql).list();
 	}
@@ -131,6 +127,29 @@ public class BaseDaoImpl<T,ID extends Serializable> implements BaseDao<T, ID>{
 		query.setMaxResults(pageInfo.getPageSize());
 		List<T> content = query.list();
 		return new PagedContent(content,conditionedCount(queryColumn,queryValue),pageInfo);
+	}
+
+	@Override
+	public List<T> get(Integer start, Integer count, String orderColumn, String sequence, Object[]... filters) {
+		String clause = null;
+		for (Object[] filter : filters) {
+			String column = (String) filter[0];
+			String compare = (String) filter[1];
+			clause += (column + compare + " ? and ");
+		}
+		String whereClause = clause.substring(0, clause.lastIndexOf("and") - 1);
+		
+		String hql = "from "+ entityClass.getSimpleName() +" where "+whereClause+" order by "+orderColumn+" "+sequence;
+		Query query = getSession().createQuery(hql);
+		
+		for (int i = 0; i < filters.length; i++) {
+			query.setParameter(i, filters[i][2]);
+		}
+			
+		query.setFirstResult(start);
+		query.setMaxResults(count);
+		
+		return query.list();
 	}
 
 

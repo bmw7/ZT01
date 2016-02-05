@@ -57,10 +57,6 @@ public class BaseServiceImpl<T,ID extends Serializable> implements BaseService<T
 		return baseDao.get(columnName, queryObject);
 	}
 	
-	@Override
-	public T getLoadService(ID id) {
-		return baseDao.load(id);
-	}
 	
 	@Override
 	public List<T> getEntitiesService(String columnName, Object queryValue) {
@@ -68,8 +64,13 @@ public class BaseServiceImpl<T,ID extends Serializable> implements BaseService<T
 	}
 	
 	@Override
-	public List<T> getAllService() {
-		return baseDao.getAll();
+	public List<T> getService() {
+		return baseDao.get();
+	}
+	
+	@Override
+	public List<T> getService(Integer start, Integer count, String orderColumn, String sequence, Object[]... filters) {
+		return baseDao.get(start, count, orderColumn, sequence, filters);
 	}
 
 	@Override
@@ -81,5 +82,6 @@ public class BaseServiceImpl<T,ID extends Serializable> implements BaseService<T
 	public PagedContent<T> getConditionPagedContentService(PageInfo pageInfo,String queryColumn, Object queryValue,String orderColumn,String sequence) {
 		return baseDao.getConditionPagedContent(pageInfo, queryColumn, queryValue,orderColumn,sequence);
 	}
+
 
 }
