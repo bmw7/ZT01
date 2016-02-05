@@ -18,7 +18,7 @@ import freemarker.template.TemplateException;
 import freemarker.template.TemplateModel;
 
 /**
- * 获取文章上传图片的缩略图URL
+ * 获取 图片实体 articleImage 的缩略图URL
  * 
  * @author 沧海软件(北京)有限公司
  * @date 2015年12月2日 下午12:00:00
