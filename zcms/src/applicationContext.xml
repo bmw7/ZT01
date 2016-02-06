@@ -156,8 +156,9 @@
 				<entry key="page"    value-ref="pageDirective" />
 				<entry key="logo"    value-ref="logoDirective" />
 				<entry key="articleThumbnail" value-ref="articleThumbnailDirective" />
-				<entry key="articleFirstThumbnail" value-ref="ArticleFirstThumbnailDirective" />
-				<entry key="articleImages" value-ref="ArticleImagesDirective" />
+				<entry key="articleFirstThumbnail" value-ref="articleFirstThumbnailDirective" />
+				<entry key="articleImages" value-ref="articleImagesDirective" />
+				<entry key="subTitle" value-ref="subTitleDirective" />
 			</map>
 		</property>
     </bean>  

@@ -85,8 +85,8 @@ public class ArticleCategoryController {
 	@CacheEvict(value = "CUSTOM_CACHE", key = "'articleCategory'")
 	@RequestMapping("/del/{id}")
 	public String delete(@PathVariable Integer id,RedirectAttributes redirectAttributes){
-		List<ArticleCategory> articleCategories = articleCategoryService.getEntitiesService("parentId", id);
-		List<Article> articles = articleService.getEntitiesService("articleCategoryId", id);
+		List<ArticleCategory> articleCategories = articleCategoryService.getService("parentId", id, "id");
+		List<Article> articles = articleService.getService("articleCategoryId", id, "id");
 		
 		if (articleCategories.size() != 0){
 			redirectAttributes.addFlashAttribute("info", "本分类下有子分类，不能删除！");

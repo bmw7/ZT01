@@ -1,5 +1,7 @@
 package com.mavict.guestbook;
 
+import java.io.UnsupportedEncodingException;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
@@ -36,7 +38,7 @@ public class GuestbookController {
 	@RequestMapping("/unlist")
 	public String unlist(ModelMap model,PageInfo pageInfo){
 		pageInfo.setPageSize(2);
-		model.addAttribute("guestbooks", guestbookService.getConditionPagedContentService(pageInfo, "reply", null, "id", "desc"));
+		model.addAttribute("guestbooks", guestbookService.getPagedContentService(pageInfo, "reply", null, "id", "desc"));
 		model.addAttribute("pageUrl", "/admin/guestbook/list");
 		return "/admin/guestbook/list";
 	}
@@ -50,8 +52,8 @@ public class GuestbookController {
 	
 	/** 回复留言 */
 	@RequestMapping("/reply/{id}")
-	public String reply(@PathVariable Integer id,HttpServletRequest request){
-		guestbookService.updateReplyService(id, request);
+	public String reply(@PathVariable Integer id,HttpServletRequest request) throws UnsupportedEncodingException{
+		guestbookService.updateService("set reply = ? where id = ?", new String(request.getParameter("reply").getBytes("iso-8859-1"), "utf-8"), id);
 		return "redirect:/admin/guestbook/list";
 	}
 	

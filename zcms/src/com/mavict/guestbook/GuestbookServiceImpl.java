@@ -1,7 +1,6 @@
 package com.mavict.guestbook;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Service;
 
@@ -26,10 +25,5 @@ public class GuestbookServiceImpl extends BaseServiceImpl<Guestbook, Integer> im
 		super.setBaseDao(baseDao);
 	}
 
-	@Override
-	public void updateReplyService(Integer id, HttpServletRequest request) {
-		guestbookDao.reply(id, request);	
-	}
-	
 	
 }

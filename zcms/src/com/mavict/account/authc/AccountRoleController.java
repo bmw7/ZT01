@@ -53,7 +53,7 @@ public class AccountRoleController {
 		AccountRole accountRole = accountRoleService.getService(accountRoleId);
 		model.addAttribute("accountRole", accountRole);
 		
-		/** 获取所有权限,并将所有权限的ID赋值给String数组accountPermIds。注:用Integer数组失效*/
+		/* 获取所有权限,并将所有权限的ID赋值给String数组accountPermIds。注:用Integer数组失效*/
 		List<AccountPerm> accountPerms = accountRole.getAccountPerms();
 		String[] accountPermIds = new String[accountPerms.size()]; 
 		for (int i = 0; i < accountPerms.size(); i++) {
@@ -67,18 +67,18 @@ public class AccountRoleController {
 	/** 删除 */
 	@RequestMapping("/del/{accountRoleId}")
 	public String del(@PathVariable Integer accountRoleId,RedirectAttributes redirectAttributes){
-		/** 系统角色不能删除*/
+		/* 系统角色不能删除*/
 		if (accountRoleId == 1) {
 			redirectAttributes.addFlashAttribute("info", "system role cannot be deleted!");
 			return "redirect:/admin/account/role/list";
 		}
-		/** 有用户使用该角色,不能删除*/
-		if (accountService.getEntitiesService("accountRoleId", accountRoleId) != null) {
+		/* 有用户使用该角色,不能删除*/
+		if (accountService.getService("accountRoleId", accountRoleId, "id") != null) {
 			redirectAttributes.addFlashAttribute("info", "this role is used by someone user.so you cannot delete it.");
 			return "redirect:/admin/account/role/list";
 		}
 		AccountRole accountRole = accountRoleService.getService(accountRoleId);
-		/** ManyToMany 关系避免一溜全删的必要措施 */
+		/* ManyToMany 关系避免一溜全删的必要措施 */
 		accountRole.setAccountPerms(null);
 		accountRoleService.deleteService(accountRole);
 		return "redirect:/admin/account/role/list";

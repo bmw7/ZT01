@@ -33,15 +33,15 @@
 		<tr class="receive" style="cursor:pointer">
 		<td>
 			发布时间：&nbsp;&nbsp;${guestbook.createDate}<br>
-			联系邮件：&nbsp;&nbsp;${(guestbook.email)?default("")}<br>
-			联系电话：&nbsp;&nbsp;${(guestbook.phone)?default("")}<br>
+			联系邮件：&nbsp;&nbsp;${(guestbook.email)!""}<br>
+			联系电话：&nbsp;&nbsp;${(guestbook.phone)!""}<br>
 			来源地址：&nbsp;&nbsp;${guestbook.ip}	
 		</td>
 			
 		<td>${guestbook.message}</td>
 		
 		<td align="center">
-			<#if (guestbook.reply)?exists()>
+			<#if (guestbook.reply)??>
 			<a href="javascript:;" id="${guestbook.id}" class="item"><span style="font-size:16px" class="glyphicons glyphicons-ok_2"></span></a>
 			<#else>
 			<a href="javascript:;" id="${guestbook.id}" class="item">未回复</a>
@@ -54,7 +54,7 @@
 		
 		<tr style="display:none;color:#fc439f;font-size:16px" class="reply">
 			<form action="${base}/admin/guestbook/reply/${guestbook.id}">
-			<td colspan="2"><textarea name="reply" style="width:100%;height:100px;border:solid 1px #e5e5e5">${guestbook.reply?default("")}</textarea></td>
+			<td colspan="2"><textarea name="reply" style="width:100%;height:100px;border:solid 1px #e5e5e5">${guestbook.reply!""}</textarea></td>
 			<td colspan="2" align="center"><div class="admin-form"><input type="submit" class="custom_button button btn-primary mr10" value="提  交" style="height:36px;font-size:14px"/></div></td>
 			</form>
 		</tr>

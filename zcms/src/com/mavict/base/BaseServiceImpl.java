@@ -8,7 +8,7 @@ import com.mavict.PagedContent;
 
 
 /**
- * 
+ * 服务实现基类
  * 
  * @author 沧海软件(北京)有限公司
  * @date   2015年5月29日 下午8:28:01
@@ -43,8 +43,18 @@ public class BaseServiceImpl<T,ID extends Serializable> implements BaseService<T
 	}
 
 	@Override
+	public void deleteService(String clause, Object... values) {
+		baseDao.delete(clause, values);
+	}
+	
+	@Override
 	public void updateService(T entity) {
 		baseDao.update(entity);	
+	}
+	
+	@Override
+	public void updateService(String clause, Object... values) {
+		baseDao.update(clause, values);
 	}
 
 	@Override
@@ -57,20 +67,39 @@ public class BaseServiceImpl<T,ID extends Serializable> implements BaseService<T
 		return baseDao.get(columnName, queryObject);
 	}
 	
-	
-	@Override
-	public List<T> getEntitiesService(String columnName, Object queryValue) {
-		return baseDao.getEntities(columnName, queryValue);
-	}
-	
 	@Override
 	public List<T> getService() {
 		return baseDao.get();
 	}
 	
 	@Override
+	public List<T> getService(String column, Object value, String orderColumn) {
+		return baseDao.get(column, value, orderColumn);
+	}
+
+	@Override
+	public List<T> getService(String column, Object value, String orderColumn, String sequence) {
+		return baseDao.get(column, value, orderColumn, sequence);
+	}
+	
+	@Override
+	public List<T> getService(Integer count, String orderColumn, String sequence, Object[]... filters) {
+		return baseDao.get(count, orderColumn, sequence, filters);
+	}
+	
+	@Override
 	public List<T> getService(Integer start, Integer count, String orderColumn, String sequence, Object[]... filters) {
 		return baseDao.get(start, count, orderColumn, sequence, filters);
+	}
+	
+	@Override
+	public List<T> getService(Integer count, String clause, Object... values) {
+		return baseDao.get(count, clause, values);
+	}
+
+	@Override
+	public List<T> getService(Integer start, Integer count, String clause, Object... values) {
+		return baseDao.get(start, count, clause, values);
 	}
 
 	@Override
@@ -79,9 +108,15 @@ public class BaseServiceImpl<T,ID extends Serializable> implements BaseService<T
 	}
 
 	@Override
-	public PagedContent<T> getConditionPagedContentService(PageInfo pageInfo,String queryColumn, Object queryValue,String orderColumn,String sequence) {
-		return baseDao.getConditionPagedContent(pageInfo, queryColumn, queryValue,orderColumn,sequence);
+	public PagedContent<T> getPagedContentService(PageInfo pageInfo,String column, Object value,String orderColumn,String sequence) {
+		return baseDao.getPagedContent(pageInfo, column, value,orderColumn,sequence);
 	}
+
+	@Override
+	public PagedContent<T> getPagedContentService(PageInfo pageInfo, String clause, Object... values) {
+		return baseDao.getPagedContent(pageInfo, clause, values);
+	}
+
 
 
 }

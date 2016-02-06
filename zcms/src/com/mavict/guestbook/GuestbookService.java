@@ -1,7 +1,5 @@
 package com.mavict.guestbook;
 
-import javax.servlet.http.HttpServletRequest;
-
 import com.mavict.base.BaseService;
 
 /**
@@ -11,5 +9,5 @@ import com.mavict.base.BaseService;
  * @date 2015年10月31日 下午8:37:35
  */
 public interface GuestbookService extends BaseService<Guestbook, Integer> {
-	void updateReplyService(Integer id,HttpServletRequest request);
+
 }

@@ -17,13 +17,4 @@ import com.mavict.base.BaseDaoImpl;
 @Repository
 public class GuestbookDaoImpl extends BaseDaoImpl<Guestbook, Integer> implements GuestbookDao {
 
-	/** 回复留言 */
-	@Override
-	public void reply(Integer id,HttpServletRequest request) {
-		String reply = request.getParameter("reply");
-		String hql = "update Guestbook set reply='"+reply+"'"+" where id="+id;
-		Query query = getSession().createQuery(hql);
-		query.executeUpdate();
-	}
-
 }

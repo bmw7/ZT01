@@ -88,7 +88,7 @@ public class ArticleController {
 			pageNumber = 1;
 		}
 		pageInfo.setPageNumber(pageNumber);
-		model.addAttribute("pagedContent", articleService.getConditionPagedContentService(pageInfo, "articleCategoryId", categoryId,"createDate","desc"));
+		model.addAttribute("pagedContent", articleService.getPagedContentService(pageInfo, "articleCategoryId", categoryId,"createDate","desc"));
 		model.addAttribute("pageUrl", "/admin/article/manage/"+categoryId);
 		return "/admin/article/list";
 	}	

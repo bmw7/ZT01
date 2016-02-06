@@ -44,6 +44,8 @@ public class ArticleController {
 	public String index(ModelMap model){
 		Integer[][] groups = new Integer[][]{{17, 3},{5,8},{7,7},{6,6},{4,6},{1,8},{2,8},{3,8}};
 		addAttributes("article", "more", groups, model);
+		
+		model.addAttribute("articles", articleService.getService(0, 4, "id", "desc", new Object[]{"articleCategoryId","=",4},new Object[]{"title","like","%大学%"}));
 		return "/client/index";
 	}
 	

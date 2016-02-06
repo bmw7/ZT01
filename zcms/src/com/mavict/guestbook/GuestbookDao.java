@@ -11,6 +11,5 @@ import com.mavict.base.BaseDao;
  * @date 2015年10月31日 下午8:36:56
  */
 public interface GuestbookDao extends BaseDao<Guestbook, Integer> {
-	/** 回复留言 */
-	void reply(Integer id,HttpServletRequest request);
+
 }
